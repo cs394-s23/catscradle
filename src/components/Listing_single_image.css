@@ -1,0 +1,5 @@
+.Listing_single_image{
+    min-width: 100%; /* 100% of the width of the parent */
+    object-fit: cover;
+    scroll-snap-align: center;
+}
