@@ -2,7 +2,7 @@
   "name": "vite-template-react",
   "version": "1.2.0",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host 127.0.0.1",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
