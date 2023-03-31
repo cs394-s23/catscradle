@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import './Listing_details.css';
+import React, { useState } from 'react';
+import './Listing_images.css';
 
-const Listing_details = () => {
-    const [count, setCount] = useState(0);
+const Listing_images = () => {
+
+    cosnt images = [];
     
     return (
-        <div className="Listing_details">
-            <header className="Listing_details-header">
+        <div className="Listing_images">
+            <header className="Listing_images_header">
                 <h1> Listing Details </h1>
             </header>
         </div>
     );
 }
 
-export default Listing_details;
+export default Listing_images;
