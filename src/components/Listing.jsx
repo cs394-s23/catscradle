@@ -9,6 +9,8 @@ const Listing = () => {
             <header className="Listing-header">
                 <h1> Listing Details </h1>
             </header>
+            <Listing_images>
+            <Listing_details>
         </div>
     );
 };
