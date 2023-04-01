@@ -8,7 +8,7 @@ const Listing = (props) => {
     return (
         <div className="Listing">
             <header className="Listing_header">
-                <h1> Listing Header </h1>
+                <h1> {props.document.name} </h1>
             </header>
             <Listing_images document={props.document}/>
             {/* <Listing_details/> */}
