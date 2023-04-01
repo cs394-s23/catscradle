@@ -1,9 +1,8 @@
 .Listing{
-    background-color: #282c34;
+    background-color: #DAC4EA;
 }
 
-.Listing-header{
-    min-height: 100vh;
+.Listing_header{
     display: flex;
     flex-direction: column;
     align-items: center;
