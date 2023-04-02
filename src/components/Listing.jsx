@@ -9,8 +9,10 @@ const Listing = (props) => {
         <div className="Listing">
             <div className="Listing_top">
                 <header className="Listing_header">
-                    <h1> {props.document.name} </h1>
-                    <p> Return to Home </p>
+                    <div className="Listing_header_content">
+                        <h1> {props.document.name} </h1>
+                        <h4> Return to Home </h4>
+                    </div>
                 </header>
                 <Listing_images document={props.document}/>
             </div>
