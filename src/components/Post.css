@@ -4,7 +4,6 @@
   flex: 1;
   position: relative;
   width: 25%;
-  margin: 0 auto;
 }
 .post img {
   /* vertical-align: middle; */
@@ -12,13 +11,19 @@
   height: 300px;
   object-fit: cover;
 }
+
 .post .text {
   position: absolute;
   bottom: 0;
   background: rgb(0, 0, 0); /* Fallback color */
   background: rgba(0, 0, 0, 0.5); /* Black background with opacity */
   color: #ffffff;
-  width: 96%;
-  padding: 10px;
   text-align: left;
+  width: 100%;
+}
+
+.post .text h2,
+.caption1,
+.caption2 {
+  padding-left: 5px;
 }

@@ -7,8 +7,8 @@ const Post = ({ postImage, postType, Address, Caption }) => {
       <img src={postImage} />
       <div className="text">
         <h2>{postType}</h2>
-        <p>{Address}</p>
-        <p>{Caption}</p>
+        <p className="caption1">{Address}</p>
+        <p className="caption2">{Caption}</p>
       </div>
     </div>
   );
