@@ -3,25 +3,35 @@ import "./Post.css";
 import { Link } from "react-router-dom";
 
 const Post = (props) => {
-  const firstCaption = props.document.address
-    ? props.document.address
-    : props.document.title;
+  const document = props.props;
+  console.log(document);
 
-  let bdrms = props.document.numBedrooms;
-  let bthrms = props.document.numBathrooms;
+  // post title
+  const PostTitle = document.itemType;
+
+  // first caption
+  const firstCaption = document.address ? document.address : document.title;
+
+  // second caption
+  let bdrms = document.numBedrooms;
+  let bthrms = document.numBathrooms;
   var secondCaption = "";
 
   if (bdrms & bthrms) {
     secondCaption = String(bdrms) + " bed" + String(bthrms) + " bath";
   } else {
-    secondCaption = props.document.title;
+    secondCaption = document.title;
   }
 
+  // first image
+  const firstImage = document.images[0];
+
   return (
-    <Link className="post" to="/listing" state={props.document}>
-      <img src={postImage} />
+    <Link className="post" to="/listing" state={document}>
+      <img src={firstImage} />
       <div className="text">
-        <h2>{props.document.itemType}</h2>
+        <h2>{PostTitle}</h2>
+
         <p className="caption1">{firstCaption}</p>
         <p className="caption2">{secondCaption}</p>
       </div>

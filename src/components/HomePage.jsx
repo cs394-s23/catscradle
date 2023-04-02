@@ -3,7 +3,11 @@ import Post from "./Post";
 import "./Homepage.css";
 import logo from "../images/paw.jpeg";
 
-const Homepage = () => {
+const Homepage = (props) => {
+  // console.log(props);
+
+  const documents = props.props.documents;
+
   return (
     <div className="root">
       <div className="homePage">
@@ -33,19 +37,9 @@ const Homepage = () => {
 
         {/* Listings */}
         <div className="listings">
-          <Post
-            postImage={Apt}
-            postType={"Property"}
-            Address={"1811 Sherman Abve 60201"}
-            Caption={"1 bed 1 bath"}
-          />
-          <Post />
-          <Post
-            postImage={Apt}
-            postType={"Property"}
-            Address={"1811 Sherman Abve 60201"}
-            Caption={"2 bed 3 bath"}
-          />
+          {documents.map((obj, index) => (
+            <Post props={obj} key={index} />
+          ))}
         </div>
       </div>
     </div>

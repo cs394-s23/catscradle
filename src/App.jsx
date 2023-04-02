@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Listing from "./components/Listing";
-import Listing_details from "./components/Listing_details";
-import Homepage from "./components/Homepage";
+import Homepage from "./components/HomePage";
 
 function App(props) {
   return (
@@ -12,7 +10,9 @@ function App(props) {
       {/* <Listing document={props.documents[0]}/> */}
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" Component={Homepage} />
+          {/* <Route exact path="/" Component={Homepage} /> */}
+
+          <Route path="/" element={<Homepage props={props} />} />
           <Route exact path="/listing" Component={Listing} />
           {/* <Route exact path="/listing" Component={Listing} /> */}
         </Routes>
