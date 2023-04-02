@@ -15,7 +15,7 @@ function App(props) {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" Component={Homepage} />
-          <Route exact path="/details" Component={Listing_details} />
+          <Route exact path="/listing" Component={Listing} />
           {/* <Route exact path="/listing" Component={Listing} /> */}
         </Routes>
       </BrowserRouter>

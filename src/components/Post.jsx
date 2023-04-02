@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Post = ({ postImage, postType, Address, Caption }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/details");
+    navigate("/listing");
   };
   return (
     <div className="post" onClick={handleClick}>
