@@ -13,12 +13,12 @@ function App(props){
   return (
     <div>
       {/* < Listing document={props.documents[0]}/> */}
-      <Listing document={props.documents[0]}/>
-      {/* <BrowserRouter>
+      {/* <Listing document={props.documents[0]}/> */}
+      <BrowserRouter>
         <Routes>
           <Route exact path="/" Component={Homepage} />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 };
