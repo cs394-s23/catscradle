@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Listing from './components/Listing';
+import Listing_details from './components/Listing_details';
 
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Listing_details.css";
 
-const Listing_details = (document) => {
+const Listing_details = (props) => {
   // getting the various properties
   // document.id
   return (

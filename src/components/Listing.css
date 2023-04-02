@@ -1,11 +1,12 @@
-.Listing{
-    background-color: #711997;
+.Listing_top{
+    margin-bottom: 5vh;
 }
 
 .Listing_header{
+    background-color: #711997;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     font-size: 1vw;
     color: white;
     padding-left: 3vw;
