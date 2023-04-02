@@ -247,7 +247,7 @@ obj6 = {
 data = [obj1,obj2, obj3, obj4, obj5, obj6]
 
 for record in data:
-    doc_ref = db.collection(u'Users').document(record['itemTitle'])
+    doc_ref = db.collection(u'Properties').document(record['itemTitle'])
     doc_ref.set(record)
 
 # Initialize the Faker library
