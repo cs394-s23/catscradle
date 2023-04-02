@@ -4,8 +4,6 @@ import "./Homepage.css";
 import logo from "../images/paw.jpeg";
 
 const Homepage = (props) => {
-  // console.log(props);
-
   const documents = props.props.documents;
 
   return (

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const document = props.props;
-  console.log(document);
 
   // post title
   const PostTitle = document.itemType;
@@ -27,7 +26,7 @@ const Post = (props) => {
   const firstImage = document.images[0];
 
   return (
-    <Link className="post" to="/listing" state={document}>
+    <Link className="post" to="/listing" state={props}>
       <img src={firstImage} />
       <div className="text">
         <h2>{PostTitle}</h2>
