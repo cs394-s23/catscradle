@@ -2,19 +2,8 @@ import React from "react";
 import Post from "./Post";
 import "./Homepage.css";
 import logo from "../images/paw.jpeg";
-import Listing_details from "./Listing_Details";
-
-import { Link } from "react-router-dom";
-
-import Apt from "../images/apt.jpg";
-import Rack from "../images/shoe-rack.jpg";
-import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-  const routeToListings = () => {
-    console.log("penis");
-  };
-
   return (
     <div className="root">
       <div className="homePage">
@@ -50,12 +39,7 @@ const Homepage = () => {
             Address={"1811 Sherman Abve 60201"}
             Caption={"1 bed 1 bath"}
           />
-          <Post
-            postImage={Rack}
-            postType={"Furniture"}
-            Address={"1811 Sherman Abve 60201"}
-            Caption={"IKEA shoe rack"}
-          />
+          <Post />
           <Post
             postImage={Apt}
             postType={"Property"}

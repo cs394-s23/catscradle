@@ -6,8 +6,6 @@ import Listing_details from "./components/Listing_details";
 import Homepage from "./components/Homepage";
 
 function App(props) {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       {/* < Listing document={props.documents[0]}/> */}
