@@ -5,6 +5,10 @@
   position: relative;
   width: 25%;
 }
+
+.post:hover {
+  cursor: pointer;
+}
 .post img {
   /* vertical-align: middle; */
   width: 100%;

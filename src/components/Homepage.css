@@ -47,6 +47,7 @@ input {
 .buttons-list {
   width: 100%;
   background-color: purple;
+  margin-bottom: 10px;
 }
 
 div.buttons {

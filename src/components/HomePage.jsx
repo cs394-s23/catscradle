@@ -2,16 +2,17 @@ import React from "react";
 import Post from "./Post";
 import "./Homepage.css";
 import logo from "../images/paw.jpeg";
-import { useNavigate } from "react-router-dom";
+import Listing_details from "./Listing_Details";
+
+import { Link } from "react-router-dom";
 
 import Apt from "../images/apt.jpg";
 import Rack from "../images/shoe-rack.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
-  let navigate = useNavigate();
   const routeToListings = () => {
-    let path = "/listings";
-    navigate(path);
+    console.log("penis");
   };
 
   return (
@@ -44,21 +45,18 @@ const Homepage = () => {
         {/* Listings */}
         <div className="listings">
           <Post
-            onClick={routeToListings}
             postImage={Apt}
             postType={"Property"}
             Address={"1811 Sherman Abve 60201"}
             Caption={"1 bed 1 bath"}
           />
           <Post
-            onClick={routeToListings}
             postImage={Rack}
             postType={"Furniture"}
             Address={"1811 Sherman Abve 60201"}
             Caption={"IKEA shoe rack"}
           />
           <Post
-            onClick={routeToListings}
             postImage={Apt}
             postType={"Property"}
             Address={"1811 Sherman Abve 60201"}

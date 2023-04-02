@@ -1,9 +1,14 @@
 import React from "react";
 import "./Post.css";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ postImage, postType, Address, Caption }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/details");
+  };
   return (
-    <div className="post">
+    <div className="post" onClick={handleClick}>
       <img src={postImage} />
       <div className="text">
         <h2>{postType}</h2>
