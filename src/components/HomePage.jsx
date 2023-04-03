@@ -12,8 +12,8 @@ const Homepage = (props) => {
         {/* logo and app name */}
         <div className="logo">
           <p>
-            <span>CatsCradle</span>
-            <span>
+            <span style={{ fontSize: "40px" }}>CatsCradle</span>
+            <span style={{ marginLeft: "5px" }}>
               <img src={logo} />
             </span>
           </p>

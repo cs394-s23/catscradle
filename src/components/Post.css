@@ -24,10 +24,15 @@
   color: #ffffff;
   text-align: left;
   width: 100%;
+  margin-bottom: 8px;
 }
 
 .post .text h2,
 .caption1,
 .caption2 {
-  padding-left: 5px;
+  padding-left: 10px;
+}
+
+.post .text h2::first-letter {
+  text-transform: capitalize;
 }

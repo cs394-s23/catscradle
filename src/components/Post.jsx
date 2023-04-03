@@ -17,7 +17,7 @@ const Post = (props) => {
   var secondCaption = "";
 
   if (bdrms & bthrms) {
-    secondCaption = String(bdrms) + " bed" + String(bthrms) + " bath";
+    secondCaption = String(bdrms) + " bed " + String(bthrms) + " bath";
   } else {
     secondCaption = document.title;
   }
