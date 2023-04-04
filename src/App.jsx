@@ -4,19 +4,14 @@ import Listing from "./components/Listing";
 import Homepage from "./components/HomePage";
 
 
-function App(props) {
+function App() {
 
   return (
     <div>
-      {/* < Listing document={props.documents[0]}/> */}
-      {/* <Listing document={props.documents[0]}/> */}
       <BrowserRouter>
         <Routes>
-          {/* <Route exact path="/" Component={Homepage} /> */}
-
-          <Route path="/" element={<Homepage props={props} />} />
+          <Route path="/" element={<Homepage/>} />
           <Route exact path="/listing" Component={Listing} />
-          {/* <Route exact path="/listing" Component={Listing} /> */}
         </Routes>
       </BrowserRouter>
     </div>

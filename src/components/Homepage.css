@@ -35,6 +35,8 @@ body {
 .logo img {
   height: 45px;
   width: 45px;
+  margin-top: 5px;
+  object-fit: cover;
 }
 
 /* search bar */
@@ -66,17 +68,17 @@ input {
   width: 100%;
   background-color: #4b0082;
   padding: 20px 0;
-  margin-bottom: 10px;
+  margin-bottom: 5vh;
 }
 
 div.buttons {
   display: flex;
-  width: 20%;
-  margin-left: 175px;
+  width: 80%;
+  margin-left: 11vw;
 }
 
 div.buttons button {
-  width: 100%;
+  width: 8vw;
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 50px;
@@ -91,7 +93,7 @@ div.buttons button {
 }
 
 div.buttons button:hover {
-  background-color: #4b0082;
+  background-color: #9951cc;
   color: white;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }

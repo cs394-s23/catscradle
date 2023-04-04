@@ -4,10 +4,16 @@
   flex: 1;
   position: relative;
   width: 25%;
+  transition: box-shadow 0.3s ease;
+}
+
+.post:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .post:hover {
   cursor: pointer;
+
 }
 .post img {
   /* vertical-align: middle; */

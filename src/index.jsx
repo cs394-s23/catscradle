@@ -96,6 +96,6 @@ const test_documents = [
 
 root.render(
   <React.StrictMode>
-    <App documents={test_documents} />
+    <App/>
   </React.StrictMode>
 );
