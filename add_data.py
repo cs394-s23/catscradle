@@ -29,7 +29,8 @@ obj1 = {
     "availableFrom": 1643788800,
     "availableTo": 1646380800,
     "images": [
-        "https://cdn.shopify.com/s/files/1/1741/7529/products/2.jpg?v=1632835359"
+        "https://cdn.shopify.com/s/files/1/1741/7529/products/2.jpg?v=1632835359", 
+        "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_500/at%2F20200727_Burrow_velvet_01_V2_white_MN"
     ],
     "amenities": ["Wifi", "Free Parking"],
     "seller": {
@@ -65,7 +66,8 @@ obj2 = {
     "availableFrom": 1646304000,
     "availableTo": 1654089600,
     "images": [
-        "https://images.rentals.ca/property-pictures/medium/mississauga-on/355475/apartment-15039684.jpg"
+        "https://images.rentals.ca/property-pictures/medium/mississauga-on/355475/apartment-15039684.jpg",
+        "https://www.west-20.com/wp-content/uploads/sites/29/2023/03/2-bed-1072x536.jpg"
     ],
     "amenities": ["Swimming Pool", "Gym", "Laundry"],
     "seller": {
@@ -101,7 +103,8 @@ obj3 =  {
     "availableFrom": "2023-05-01T00:00:00.000Z",
     "availableTo": "2023-08-31T00:00:00.000Z",
     "images": [
-      "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81QK5J2i6tL.jpg"
+      "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81QK5J2i6tL.jpg",
+      "https://media1.popsugar-assets.com/files/thumbor/0O08jYEURCBhs-vfkGW1UxUqOF4/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2021/09/24/656/n/1922794/4ed892fe8f27dd6e_netimgZJ8AW4/i/Best-Sectional-Sofa-Albany-Park-Park-Sectional-Sofa.jpg"
     ],
     "amenities": None,
     "seller": {
@@ -137,7 +140,8 @@ obj4 = {
     "availableFrom": "2023-06-01T00:00:00.000Z",
     "availableTo": None,
     "images": [
-      "https://cdn.onekindesign.com/wp-content/uploads/2015/04/Interior-TR-INT2-architecture-01-1-Kindesign.jpg"
+      "https://cdn.onekindesign.com/wp-content/uploads/2015/04/Interior-TR-INT2-architecture-01-1-Kindesign.jpg",
+      "https://storage.googleapis.com/gen-atmedia/2/2018/10/3074d6ec832b51a58eaa559465a308464e799d6f.jpeg"
     ],
     "amenities": ["gym", "laundry"],
     "seller": {
@@ -174,7 +178,8 @@ obj5 = {
     "availableFrom": "2023-05-10T00:00:00.000Z",
     "availableTo": "2023-09-10T00:00:00.000Z",
     "images": [
-      "https://a.1stdibscdn.com/pair-of-antique-hoop-back-windsor-oak-armchairs-for-sale/f_17552/f_331588521678133138215/f_33158852_1678133138530_bg_processed.jpg?width=768"
+      "https://a.1stdibscdn.com/pair-of-antique-hoop-back-windsor-oak-armchairs-for-sale/f_17552/f_331588521678133138215/f_33158852_1678133138530_bg_processed.jpg?width=768",
+      "https://cdn.shopify.com/s/files/1/1883/4283/products/OldIndianWoodenLowChairwithHandWovenTwineandCarvedMotifsYN6234_800x.jpg?v=1660259117"
     ],
     "amenities": None,
     "seller": {
@@ -211,7 +216,8 @@ obj6 = {
     "availableFrom": "2023-05-15T00:00:00.000Z",
     "availableTo": "2023-08-15T00:00:00.000Z",
     "images": [
-      "https://casapitti.com/wp-content/uploads/2021/06/7713_ambient.jpg"
+      "https://casapitti.com/wp-content/uploads/2021/06/7713_ambient.jpg",
+      "https://cdn.shopify.com/s/files/1/1370/6459/products/GFXS0061-Edit-WEB.jpg?v=1615444415"
     ],
     "amenities": None,
     "seller": {
