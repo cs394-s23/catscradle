@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Listing_details.css";
-import phone from "../images/phone.png";
 
 const Listing_details = (props) => {
   const document = props.document;
