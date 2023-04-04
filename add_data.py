@@ -29,8 +29,7 @@ obj1 = {
     "availableFrom": 1643788800,
     "availableTo": 1646380800,
     "images": [
-        "https://www.example.com/images/velvet-sofa-1.jpg",
-        "https://www.example.com/images/velvet-sofa-2.jpg"
+        "https://cdn.shopify.com/s/files/1/1741/7529/products/2.jpg?v=1632835359"
     ],
     "amenities": ["Wifi", "Free Parking"],
     "seller": {
@@ -66,9 +65,7 @@ obj2 = {
     "availableFrom": 1646304000,
     "availableTo": 1654089600,
     "images": [
-        "https://www.example.com/images/apartment-1.jpg",
-        "https://www.example.com/images/apartment-2.jpg",
-        "https://www.example.com/images/apartment-3.jpg"
+        "https://images.rentals.ca/property-pictures/medium/mississauga-on/355475/apartment-15039684.jpg"
     ],
     "amenities": ["Swimming Pool", "Gym", "Laundry"],
     "seller": {
@@ -104,9 +101,7 @@ obj3 =  {
     "availableFrom": "2023-05-01T00:00:00.000Z",
     "availableTo": "2023-08-31T00:00:00.000Z",
     "images": [
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg"
+      "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81QK5J2i6tL.jpg"
     ],
     "amenities": None,
     "seller": {
@@ -142,9 +137,7 @@ obj4 = {
     "availableFrom": "2023-06-01T00:00:00.000Z",
     "availableTo": None,
     "images": [
-      "https://example.com/image4.jpg",
-      "https://example.com/image5.jpg",
-      "https://example.com/image6.jpg"
+      "https://cdn.onekindesign.com/wp-content/uploads/2015/04/Interior-TR-INT2-architecture-01-1-Kindesign.jpg"
     ],
     "amenities": ["gym", "laundry"],
     "seller": {
@@ -181,9 +174,7 @@ obj5 = {
     "availableFrom": "2023-05-10T00:00:00.000Z",
     "availableTo": "2023-09-10T00:00:00.000Z",
     "images": [
-      "https://example.com/image7.jpg",
-      "https://example.com/image8.jpg",
-      "https://example.com/image9.jpg"
+      "https://a.1stdibscdn.com/pair-of-antique-hoop-back-windsor-oak-armchairs-for-sale/f_17552/f_331588521678133138215/f_33158852_1678133138530_bg_processed.jpg?width=768"
     ],
     "amenities": None,
     "seller": {
@@ -220,9 +211,7 @@ obj6 = {
     "availableFrom": "2023-05-15T00:00:00.000Z",
     "availableTo": "2023-08-15T00:00:00.000Z",
     "images": [
-      "https://example.com/image10.jpg",
-      "https://example.com/image11.jpg",
-      "https://example.com/image12.jpg"
+      "https://casapitti.com/wp-content/uploads/2021/06/7713_ambient.jpg"
     ],
     "amenities": None,
     "seller": {
