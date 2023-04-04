@@ -8,10 +8,20 @@
 }
 
 .Message_box {
-  background-color: #cbc3e3;
+  background-color: #711997;
   text-align: center;
   border-radius: 15px;
   margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
+.Message_box a {
+  color: white;
+}
+
+.Message_box p {
+  font-weight: bold;
+  color: white;
 }
 
 .Details_box {
@@ -21,12 +31,13 @@
 }
 
 .Main_details {
-  background-color: #cbc3e3;
+  background-color: white;
   width: 100%;
   margin-bottom: 2rem;
   padding: 1rem;
   box-sizing: border-box;
-  border-radius: 15px;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Basic_info {
@@ -43,12 +54,13 @@
 }
 
 .Amenities {
-  background-color: #cbc3e3;
+  background-color: white;
+  color: black;
   width: 100%;
   margin: auto;
   padding: 1rem;
   box-sizing: border-box;
-  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .Amenities p {
