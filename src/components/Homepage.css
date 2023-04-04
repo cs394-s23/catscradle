@@ -102,9 +102,9 @@ div.buttons button:hover {
 .listings {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  width: 80%;
+  gap: 15px;
   margin: auto;
+  justify-content: center;
 }
 
 /* Responsive Design */
