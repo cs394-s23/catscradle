@@ -113,15 +113,43 @@ div.buttons button:hover {
     padding: 20px;
   }
 
+  .logo {
+    font-size: 26px;
+  }
+
   input {
     width: 100%;
   }
 
+  .buttons-list {
+    margin-bottom: 4vh;
+  }
+
   div.buttons {
-    flex-direction: column;
+    flex-direction: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 100%;
+    padding: 0px 15px;
+  }
+
+  div.buttons button {
+    width: 33%;
   }
 
   div.buttons button {
     margin-bottom: 15px;
+  }
+
+  .listings {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: auto;
+    padding: 0px 20px;
+  }
+
+  .post {
+    width: 100%;
   }
 }

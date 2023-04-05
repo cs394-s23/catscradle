@@ -67,3 +67,29 @@
   text-align: center;
   font-weight: bold;
 }
+
+/* responsive design */
+@media screen and (max-width: 768px) {
+  .Basic_info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .Details_box {
+    margin-bottom: 15px;
+  }
+
+  .Listing_images_scroll_panel {
+    height: 30vh;
+  }
+
+  .misc {
+    height: 250px;
+  }
+
+  .Listing_header_content {
+    font-size: 10px;
+  }
+}

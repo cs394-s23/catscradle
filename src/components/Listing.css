@@ -1,47 +1,49 @@
-.Listing{
-    background-color: #f9edff;
+.Listing {
+  background-color: #f9edff;
 }
 
-.Listing_top{
-    margin-bottom: 5vh;
+.Listing_top {
+  margin-bottom: 5vh;
 }
 
-.Listing_header{
-    background-color: #711997;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 10vh;
-    padding: 1vh 5vw 1vh 5vw;
+.Listing_header {
+  background-color: #711997;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 10vh;
+  padding: 1vh 5vw 1vh 5vw;
 }
 
-.Listing_header_content{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 1vw;
-    color: white;
+.Listing_header_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1vw;
+  color: white;
 }
 
-.Return_home_button{
-    color: white;
-    text-decoration: none;
-    border-style: solid;
-    padding: 0.5vh 0.5vw 0.5vh 0.5vw;
-    border-width: 2px;
-    border-color: white;
-    border-radius: 5px;
+.Return_home_button {
+  color: white;
+  text-decoration: none;
+  border-style: solid;
+  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
+  border-width: 2px;
+  border-color: white;
+  border-radius: 5px;
 }
 
-.Return_home_button:hover{
-    color: #711997;
-    background-color: white;
+.Return_home_button:hover {
+  color: #711997;
+  background-color: white;
 }
 
-.whiteBar{
-    background-color: #460760;
-    height: 1vh;
-    width: 100%;
+.whiteBar {
+  background-color: #460760;
+  height: 1vh;
+  width: 100%;
 }
+
+/* responsive design */
