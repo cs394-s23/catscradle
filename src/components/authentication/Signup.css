@@ -1,0 +1,113 @@
+.root {
+  text-align: center;
+}
+
+/* logo section */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  background-color: #4b0082;
+}
+
+.logo p {
+  color: white;
+  font-size: 32px;
+  margin-left: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  height: 45px;
+  width: 45px;
+  margin-top: 5px;
+  object-fit: cover;
+}
+
+/* form styling */
+.form-container {
+  padding: 30px 300px;
+}
+form {
+  margin: auto;
+  width: 40%;
+}
+
+label {
+  width: 50%;
+  margin-top: 6px;
+}
+
+.form-control {
+  display: flex;
+}
+
+input {
+  background: none;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  height: 4vh;
+  margin-left: 3px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-caption {
+  margin-left: 5px;
+}
+
+label {
+  text-align: left;
+}
+
+button[type="submit"] {
+  width: 8vw;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 50px;
+  border: none;
+  background-color: #ffffff;
+  color: #4b0082;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  margin-right: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #9951cc;
+  color: white;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.submit-form {
+  margin-top: 10px;
+}
+
+h1 {
+  margin-top: 10px;
+}
