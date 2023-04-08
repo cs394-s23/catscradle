@@ -1,7 +1,7 @@
 import logo from "./paw.jpeg";
 import "./Signup.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
   const [state, setState] = useState({
@@ -17,9 +17,12 @@ const Signup = () => {
     }));
   };
 
+  let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(state);
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -38,7 +41,7 @@ const Signup = () => {
         {/* form */}
         <h1>Sign Up</h1>
 
-        <div class="form-container">
+        <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-control">
               <label>Email:</label>
@@ -69,7 +72,6 @@ const Signup = () => {
             </div>
 
             <div className="submit-form">
-              <label></label>
               <button type="submit">Sign Up</button>
               <span className="login-caption">
                 already a member? <Link to="/login">log in</Link>

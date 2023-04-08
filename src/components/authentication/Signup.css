@@ -112,3 +112,35 @@ label {
 h1 {
   margin-top: 10px;
 }
+
+.form-container .submit-form {
+  display: flex;
+}
+/* mobile responsive */
+@media screen and (max-width: 800px) {
+  .form-container {
+    padding: 0px;
+  }
+
+  form {
+    width: 80%;
+    margin: auto;
+  }
+
+  .submit-form {
+    margin-top: 10px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .form-container button[type="submit"] {
+    width: 100%;
+  }
+
+  .login-caption {
+    margin-top: 5px;
+  }
+}

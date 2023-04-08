@@ -1,13 +1,15 @@
 import logo from "./paw.jpeg";
 import "./Signup.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+
+  let navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -20,6 +22,8 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(state);
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -38,7 +42,7 @@ const Login = () => {
         {/* form */}
         <h1>Log In</h1>
 
-        <div class="form-container">
+        <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-control">
               <label>Email:</label>
@@ -58,8 +62,7 @@ const Login = () => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="form-control">
-              <label></label>
+            <div className="submit-form">
               <button type="submit">Log In</button>
               <span className="login-caption">
                 not a member? <Link to="/signup">Sign Up</Link>
