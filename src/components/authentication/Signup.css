@@ -30,6 +30,7 @@
 .form-container {
   padding: 30px 300px;
 }
+
 form {
   margin: auto;
   width: 40%;
@@ -44,13 +45,13 @@ label {
   display: flex;
 }
 
-input {
+.form-container input {
   background: none;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
 select {
   width: 100%;
   padding: 12px 20px;
@@ -64,7 +65,7 @@ select {
   margin-left: 3px;
 }
 
-input[type="submit"] {
+.form-container input[type="submit"] {
   width: 100%;
   background-color: #4caf50;
   color: white;
@@ -83,7 +84,7 @@ label {
   text-align: left;
 }
 
-button[type="submit"] {
+.form-container button[type="submit"] {
   width: 8vw;
   padding: 10px 20px;
   font-size: 18px;
@@ -98,7 +99,7 @@ button[type="submit"] {
   margin-right: 5px;
 }
 
-button[type="submit"]:hover {
+.form-container button[type="submit"]:hover {
   background-color: #9951cc;
   color: white;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
