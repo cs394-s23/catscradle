@@ -21,7 +21,14 @@ const Homepage = () => {
 
         if (filterType == null) {
           querySnapshot = await db.collection("Properties").get();
-        } else {
+        } 
+
+        else if (filterType != "Property"){
+          console.log(filterType)
+          querySnapshot = await db.collection("Properties").where("category", "==", filterType).get();
+        }
+        
+        else {
           querySnapshot = await db.collection("Properties").where("itemType", "==", filterType).get();
         }
 
@@ -69,7 +76,13 @@ const Homepage = () => {
           <div className="buttons">
             <button onClick={FilterData.bind(this, null)}>All</button>
             <button onClick={FilterData.bind(this, "Property")}>Property</button>
-            <button onClick={FilterData.bind(this, "Furniture")}>Furniture</button>
+            <div className="dropdown">
+              <button className="dropbtn">Furniture</button>
+              <div className = "dropdown-content">
+                <button onClick={FilterData.bind(this, "Sofas")}>Sofa</button>
+                <button onClick={FilterData.bind(this, "Chairs")}>Chair</button>
+              </div>
+            </div>
           </div>
         </div>
 
