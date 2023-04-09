@@ -125,17 +125,8 @@ h1 {
     margin: auto;
   }
 
-  .submit-form {
-    margin-top: 10px;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
   .form-container button[type="submit"] {
-    width: 100%;
+    width: 42%;
   }
 
   .login-caption {
