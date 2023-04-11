@@ -1,8 +1,8 @@
 import React from "react";
 import Post from "./Post";
 import "./Homepage.css";
-import logo from "../images/paw.jpeg";
-import db from '../..//firebase.js';
+import logo from "../../images/paw.jpeg";
+import db from '../../..//firebase.js';
 import { useState, useReducer } from 'react';
 
 const Homepage = () => {

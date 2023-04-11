@@ -58,6 +58,8 @@ psd
 thumb
 sketch
 
+dist
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
