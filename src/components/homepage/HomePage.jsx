@@ -37,7 +37,7 @@ const Homepage = () => {
         }
         
         else {
-          querySnapshot = await db.collection("Properties").where("category", "==", filterType).get();
+          querySnapshot = await db.collection("Properties").where("type", "==", filterType).get();
           console.log(querySnapshot)
         }
 
@@ -108,8 +108,8 @@ const Homepage = () => {
             <div className="dropdown">
               <button className="dropbtn" onClick={FilterData.bind(this, "Furniture")}>Furniture</button>
               <div className = "dropdown-content">
-                <button onClick={FilterData.bind(this, "Sofas")}>Sofa</button>
-                <button onClick={FilterData.bind(this, "Chairs")}>Chair</button>
+                <button className = "dropdownBtn" onClick={FilterData.bind(this, "livingRoom")}>Living Room</button>
+                <button onClick={FilterData.bind(this, "kitchen")}>Kitchen</button>
               </div>
             </div>
           </div>
