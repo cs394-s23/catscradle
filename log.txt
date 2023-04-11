@@ -1,0 +1,283 @@
+commit 43eaa2ec659df1d89b26bc9be2bf1450ead45cbd
+Author: Rui Wen <ruiwen@dhcp-10-105-215-29.wireless.northwestern.private>
+Date:   Sun Apr 9 13:00:02 2023 -0500
+
+    furniture dropdown
+
+commit 2172df652f31b142219007199587ea0140c52ae6
+Author: Erick Meikoki <erickmeikoki@Ericks-MacBook-Air.local>
+Date:   Fri Apr 7 20:16:08 2023 -0500
+
+    fixed some routing issues
+
+commit f75d7a4409fa8b43b232b695085f364f927fd3df
+Author: Erick Meikoki <erickmeikoki@Ericks-MacBook-Air.local>
+Date:   Fri Apr 7 19:41:15 2023 -0500
+
+    fixed some styling issues
+
+commit 44ccb9614c761a514ccc26dc2083fdffe32fb645
+Author: cracker_bitch <cracker_bitch@iMac.local>
+Date:   Fri Apr 7 13:22:03 2023 -0500
+
+    created sign up and log in forms
+
+commit 24521dfbd12266c43c8e75a2c1d4d59ac534ecb0
+Author: Erick Meikoki <erickmeikoki@ericks-air.ads.northwestern.edu>
+Date:   Wed Apr 5 10:26:10 2023 -0500
+
+    Made the app mobile-responsive
+
+commit e346229f8c4f44643872b98dec09eff7149cb038
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Tue Apr 4 18:38:19 2023 -0500
+
+    removed icon
+
+commit 43c488a1a44024b9f5ae59fa2c87808d5979178c
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Tue Apr 4 18:33:48 2023 -0500
+
+    Changed some images display
+
+commit 81f404af281c73c2e33c4ceb38de250260109b12
+Author: Victoria Tran <victoriahcntran@gmail.com>
+Date:   Tue Apr 4 18:23:57 2023 -0500
+
+    fixed css
+
+commit 0b3f848a3fdb3be1210edd452889ae93273fce27
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Tue Apr 4 17:45:22 2023 -0500
+
+    changed website logo
+
+commit aaf46aa21cab2a7b80f366a2c72a8fb071784a1f
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Tue Apr 4 13:13:33 2023 -0500
+
+    fixed flex issues on the homepage
+
+commit 49332b848808be7ec113449080d45638d726fb14
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Mon Apr 3 22:39:52 2023 -0500
+
+    Better looking, filter working, data pipeline good
+
+commit 0df5acd4618cc2d21853fac18bb52d4416d56954
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sun Apr 2 17:45:38 2023 -0500
+
+    Added weird test scripts
+
+commit fcb7e0521c534c697b70fb2274d2427ba31783b3
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Mon Apr 3 21:03:14 2023 -0500
+
+    added more images
+
+commit 269a862a542ccfe66f4adb15218c4b1522e2fb8d
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Mon Apr 3 20:51:30 2023 -0500
+
+    replaced image links
+
+commit 2fcf6d00033a9b84c7491a81201c6d069fb59da1
+Merge: d4a63b8 f7fc92f
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Mon Apr 3 12:23:43 2023 -0500
+
+    Merge branch 'main' of https://github.com/cs394-s23/catscradle
+
+commit d4a63b86325843efe9ae1119a9cb41a3ec5a9613
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Mon Apr 3 12:15:29 2023 -0500
+
+    display firestore data
+
+commit f7fc92f8d47ff9c9b109791895d10114291041f5
+Author: Andrewegao <andrewgao99@gmail.com>
+Date:   Sun Apr 2 17:51:29 2023 -0500
+
+    andrew git push
+
+commit 7dc475d4e55fc20f2b31ab4b36bf776239c1e0a9
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sun Apr 2 17:39:27 2023 -0500
+
+    styled the home page
+
+commit 2db30edbdda15930c7799207817d75ddfd05b836
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Sun Apr 2 17:25:48 2023 -0500
+
+    minor change for collection name
+
+commit 5d3c1ecf47fe46ddd33e6569b05f7995a5f86dd6
+Author: Rui Wen <ruiwen@ruis-air.ads.northwestern.edu>
+Date:   Sun Apr 2 17:19:59 2023 -0500
+
+    firebase add data script
+
+commit a58366a11a0f11c3b4d1329bddcf09726c5b07d6
+Author: Victoria Tran <victoriahcntran@gmail.com>
+Date:   Sun Apr 2 16:45:52 2023 -0500
+
+    finished details page
+
+commit a28657cd2e148b509c860807995764e62e050f72
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sun Apr 2 16:35:03 2023 -0500
+
+    whatever
+
+commit c2bc70637ea0e17f528bd2eddd34bc249077808e
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sun Apr 2 16:25:37 2023 -0500
+
+    passed data around
+
+commit 9b5c27627378930419f5a2ceed298b6943e84164
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sun Apr 2 16:02:43 2023 -0500
+
+    modified props
+
+commit dffd328d810a111a6fa352c30fd4ddc91c71caee
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sun Apr 2 15:36:30 2023 -0500
+
+    Added fake data
+
+commit 639dfc9111aded4a71a20af260b12394161b5692
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sun Apr 2 13:07:53 2023 -0500
+
+    Updated listing link items
+
+commit a2898a7ccf6844510a5dceacd37249ada3be4b9b
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sat Apr 1 21:22:59 2023 -0500
+
+    modified routes
+
+commit 99d5e341ad654bc9829767d6f995abf180b7200f
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sat Apr 1 21:05:23 2023 -0500
+
+    modified background color
+
+commit 2db3dccfadb34bcefc3dba0fc18ee3076f85c9d6
+Author: Victoria Tran <victoriahcntran@gmail.com>
+Date:   Sat Apr 1 20:52:01 2023 -0500
+
+    added listing details for furniture
+
+commit 67362eb938db20e3dda41457734862981b26822d
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sat Apr 1 20:51:06 2023 -0500
+
+    Some misc items
+
+commit 5ac6eb9bcf08e378866966579e634a3092944c25
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sat Apr 1 20:36:08 2023 -0500
+
+    modified homepage
+
+commit 3dd37fe92acdb709db5983b78691f47d98627084
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sat Apr 1 20:23:40 2023 -0500
+
+    Updated linking system
+
+commit e07dc3aac2dde52cb358f388104d5374abfb73af
+Author: erickwithack <lemaerick6@gmail.com>
+Date:   Sat Apr 1 19:57:47 2023 -0500
+
+    modified homepage color and other stuff
+
+commit 9157291a9e7dddacd0abb19b4655019949eba0fb
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sat Apr 1 19:53:49 2023 -0500
+
+    Added arguments to individual componenets
+
+commit 07add3c27fdd584af5c2fb1a0fb6af7bfdacaa24
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sat Apr 1 19:23:28 2023 -0500
+
+    Added arguments to individual componenets
+
+commit 2a063212647a90d54463f401527666a2f57b4e6a
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Sat Apr 1 18:55:32 2023 -0500
+
+    Added arguments to individual componenets
+
+commit 247b3e2aafc9519c83b57155aeaf66d826863411
+Merge: 7c77763 2132d61
+Author: Victoria Tran <victoriahcntran@gmail.com>
+Date:   Sat Apr 1 18:51:13 2023 -0500
+
+    first iteration of listing details
+
+commit 7c77763ef6ba920caf51e1179ddaf8f232e8f65e
+Author: Victoria Tran <victoriahcntran@gmail.com>
+Date:   Fri Mar 31 03:10:13 2023 -0500
+
+    work in progress listing details
+
+commit 2132d619bc4100d5664e6051cb49dc941f2177e4
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Fri Mar 31 01:59:13 2023 -0500
+
+    Finished first iteration of listing images
+
+commit e0587698e48b9dab65d4d46d15ad117928f2a8cd
+Author: ERICK MEIKOKI <erickmeikoki2023@u.northwestern.edu>
+Date:   Thu Mar 30 20:20:28 2023 -0500
+
+    Erick home page done 50%
+
+commit 921d94aca0a07c455ecf4f8adfced879c9195bab
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:57:51 2023 -0500
+
+    small error fix
+
+commit 711c930ee8d57d5e8cb2d19cd2499ed1d2b4fea2
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:35:46 2023 -0500
+
+    error fixed in listings.jsx
+
+commit 765b8c333bb8bef6eb199467546fd6c1848dcf31
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:32:40 2023 -0500
+
+    updated listing components
+
+commit d445555745512c3799a6521ff757469a7f50b9dc
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:24:01 2023 -0500
+
+    Readded index
+
+commit 473033cdf0d51559c29c8e49acf738ee2683ff7a
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:19:45 2023 -0500
+
+    Added test
+
+commit 30d9f3e101ac48661cb4f234d4fbe672ed99a57b
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 19:06:24 2023 -0500
+
+    changed local host
+
+commit 71ac8037d6df21fcbad1cc1fd7c3014a4d2d152f
+Author: billyin0702 <billyin0702@outlook.com>
+Date:   Thu Mar 30 18:22:54 2023 -0500
+
+    Test app
