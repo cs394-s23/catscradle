@@ -18,7 +18,7 @@ const Post = (props) => {
 
   // Changed if statement here to reflect they are both not null -> &&
   if (bdrms && bthrms) {
-    secondCaption = String(bdrms) + " bed " + String(bthrms) + " bath";
+    secondCaption = String(bdrms) + " bedroom " + String(bthrms) + " bath";
   } else {
     secondCaption = document.itemType;
   }

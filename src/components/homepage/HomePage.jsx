@@ -25,10 +25,14 @@ const Homepage = () => {
 
         else if (Array.isArray(filterType)){
           console.log(typeof filterType[0])
-          querySnapshot = await db.collection("Properties").where("numBathrooms", "==", filterType[0]).where("numBedrooms", "==", filterType[1]).get();
+          querySnapshot = await db.collection("Properties").where("numBathrooms", "==", filterType[1]).where("numBedrooms", "==", filterType[0]).get();
         }
 
         else if (filterType == "Property"){
+          querySnapshot = await db.collection("Properties").where("itemType", "==", filterType).get();
+        }
+
+        else if (filterType == "Furniture"){
           querySnapshot = await db.collection("Properties").where("itemType", "==", filterType).get();
         }
         
@@ -60,9 +64,9 @@ const Homepage = () => {
 	});
 
   const getInputValue = async() => {
-    var bathroomNum = document.getElementById("bathroom").value;
     var bedroomNum = document.getElementById("bedroom").value;
-    var filterType = [bathroomNum, bedroomNum];
+    var bathroomNum = document.getElementById("bathroom").value;
+    var filterType = [bedroomNum, bathroomNum];
     FilterData(filterType);
   }
 
@@ -93,16 +97,16 @@ const Homepage = () => {
               <button onClick={FilterData.bind(this, "Property")}>Property</button>
               <div className = "dropdown-input">
                 <div className="container">
-                  <input type="text" id="bathroom" name="bathroom"/>&nbsp;
-                  <label>Bathroom</label>
                   <input type="text" id="bedroom" name="bedroom"/>&nbsp;
-                  <label>Bedroom</label>
+                  <b>Bedroom</b>&nbsp;
+                  <input type="text" id="bathroom" name="bathroom"/>&nbsp;
+                  <b>Bathroom</b>&nbsp;
                   <button onClick={getInputValue}>Find</button>
                 </div>
               </div>
             </div>
             <div className="dropdown">
-              <button className="dropbtn">Furniture</button>
+              <button className="dropbtn" onClick={FilterData.bind(this, "Furniture")}>Furniture</button>
               <div className = "dropdown-content">
                 <button onClick={FilterData.bind(this, "Sofas")}>Sofa</button>
                 <button onClick={FilterData.bind(this, "Chairs")}>Chair</button>
