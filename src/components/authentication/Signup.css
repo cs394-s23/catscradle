@@ -77,7 +77,8 @@ select {
 }
 
 .login-caption {
-  margin-left: 5px;
+  display: block;
+  margin-top: 7px;
 }
 
 label {
@@ -113,9 +114,6 @@ h1 {
   margin-top: 10px;
 }
 
-.form-container .submit-form {
-  display: flex;
-}
 /* mobile responsive */
 @media screen and (max-width: 800px) {
   .form-container {
@@ -127,17 +125,8 @@ h1 {
     margin: auto;
   }
 
-  .submit-form {
-    margin-top: 10px;
-    padding: 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
   .form-container button[type="submit"] {
-    width: 100%;
+    width: 42%;
   }
 
   .login-caption {
