@@ -26,7 +26,6 @@ const Homepage = () => {
         else if (Array.isArray(filterType)){
           console.log(typeof filterType[0])
           querySnapshot = await db.collection("Properties").where("numBathrooms", "==", filterType[0]).where("numBedrooms", "==", filterType[1]).get();
-          console.log(querySnapshot)
         }
 
         else if (filterType == "Property"){
@@ -63,8 +62,8 @@ const Homepage = () => {
   const getInputValue = async() => {
     var bathroomNum = document.getElementById("bathroom").value;
     var bedroomNum = document.getElementById("bedroom").value;
-    var filterType = [bathroomNum, bedroomNum]
-    Fetchdata(filterType)
+    var filterType = [bathroomNum, bedroomNum];
+    FilterData(filterType);
   }
 
   // HTML returns

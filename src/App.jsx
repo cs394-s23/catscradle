@@ -14,6 +14,7 @@ function App() {
           <Route exact path="/listing" Component={Listing} />
           <Route exact path="/signup" Component={Signup} />
           <Route exact path="/login" Component={Login} />
+          {/* <Route exact path="/upload" Component={Upload} /> */}
         </Routes>
       </BrowserRouter>
     </div>
