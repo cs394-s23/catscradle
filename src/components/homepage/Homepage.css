@@ -118,7 +118,7 @@ div.buttons button:hover {
   display: none;
   position: absolute;
   min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0);
   z-index: 1;
 }
 
@@ -126,7 +126,7 @@ div.buttons button:hover {
   display: none;
   position: absolute;
   width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0);
   z-index: 1;
 }
 
@@ -134,17 +134,24 @@ div.buttons button:hover {
   width: 30px;
 }
 
-
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.dropdown:hover .dropdown-input {display: block;}
+.dropdown:hover .dropdown-input {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #9951cc;}
+.dropdown:hover .dropbtn {
+  background-color: #9951cc;
+}
 
 .container {
   display: flex;
@@ -154,8 +161,7 @@ div.buttons button:hover {
   width: 530px;
   background-color: #9951cc;
   border-radius: 50px;
- }
- 
+}
 
 label {
   flex: 1;
@@ -167,9 +173,6 @@ input[type="text"] {
   border: none;
   outline: none;
 }
-
-
-
 
 /* listings */
 .listings {
@@ -192,14 +195,18 @@ input[type="text"] {
 }
 
 .To_upload_button:hover {
-color: #711997;
-background-color: white;
+  color: #711997;
+  background-color: white;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
   .search-bar {
     padding: 20px;
+  }
+
+  #hpsearch {
+    width: 100%;
   }
 
   .logo {
@@ -220,10 +227,15 @@ background-color: white;
     margin: auto;
     width: 100%;
     padding: 0px 15px;
+    gap: 5px;
+  }
+
+  div.buttons > * {
+    flex: 1;
   }
 
   div.buttons button {
-    width: 33%;
+    width: 100%;
   }
 
   div.buttons button {
@@ -240,5 +252,19 @@ background-color: white;
 
   .post {
     width: 100%;
+  }
+
+  .hplogo {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hplogo p {
+    margin-left: -106px;
+  }
+
+  .To_upload_button {
+    margin-left: -47%;
+    margin-top: 10px;
   }
 }
