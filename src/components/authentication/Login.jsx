@@ -2,6 +2,8 @@ import logo from "./paw.jpeg";
 import "./Signup.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -19,11 +21,29 @@ const Login = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(state);
-    navigate("/");
-    window.location.reload();
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      const result = await firebase.auth().signInWithPopup(provider);
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    try {
+      const result = await firebase.auth().signInWithPopup(provider);
+      const { user } = result;
+      console.log(user);
+      navigate("/");
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -43,7 +63,7 @@ const Login = () => {
         <h1>Log In</h1>
 
         <div className="form-container">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleGoogleSignIn}>
             <div className="form-control">
               <label>Email:</label>
               <input
@@ -63,14 +83,19 @@ const Login = () => {
               />
             </div>
             <div className="submit-form">
-              <button type="submit">Log In</button>
+              <button type="submit">
+                <Link to="/homepage">Log in</Link>
+              </button>
               <span className="login-caption">
                 not a member? <Link to="/signup">Sign Up</Link>
               </span>
             </div>
           </form>
+          {/* <button onClick={handleGoogleSignIn}>Sign in with Google</button> */}
         </div>
       </div>
+
+      <script src="https://apis.google.com/js/platform.js" async defer></script>
     </div>
   );
 };
