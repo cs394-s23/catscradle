@@ -37,46 +37,13 @@
     margin-bottom: 10px;
 }
 
-/* #images{
+#images{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-#itemType{
-    color: black;
-    width: 72%;
-    padding: 0;
-    padding-left: 20px;
-}
-
-#condition{
-    color: black;
-    width: 72%;
-    padding: 0;
-    padding-left: 20px;
-}
-
-#propertyClass{
-    color: black;
-    width: 72%;
-    padding: 0;
-    padding-left: 20px;
-}
-
-#images{
     padding-top: 1vh;
-    width : 72%;
 }
-
-#availableFromDate{
-    width: 72%;
-}
-
-#availableToDate{
-    width: 72%;
-} */
 
 #submit_button{
     width: 50%;
