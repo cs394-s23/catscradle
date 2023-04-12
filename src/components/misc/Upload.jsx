@@ -19,6 +19,8 @@ const Upload = () => {
         // Get value of each of form's input
         var itemTitle = document.getElementById("itemTitle").value;
         var itemType = document.getElementById("itemType").value;
+        var numBathrooms = document.getElementById("numBathrooms").value;
+        var numBedrooms = document.getElementById("numBedrooms").value;
         var description = document.getElementById("description").value;
         var price = document.getElementById("price").value;
         var address = document.getElementById("address").value;
@@ -63,6 +65,8 @@ const Upload = () => {
         var dataPush = {
             itemTitle : itemTitle,
             itemType: itemType,
+            numBathrooms: numBathrooms,
+            numBedrooms: numBedrooms,
             description: description,
             price: price,
             address: address,
@@ -106,8 +110,12 @@ const Upload = () => {
                     </select>
                 </div>
                 <div>
-                    <label htmlFor="description">Description</label>
-                    <input type="text" id="description" name="description" placeholder="Description of your listing" />
+                    <label htmlFor="numBathrooms">Number of Bathrooms</label>
+                    <input type="number" id="numBathrooms" name="numBathrooms" placeholder="Enter the number of bathrooms" />
+                </div>
+                <div>
+                    <label htmlFor="numBedrooms">Number of Bedrooms</label>
+                    <input type="number" id="numBedrooms" name="numBedrooms" placeholder="Enter the number of bedrooms" />
                 </div>
                 <div>
                     <label htmlFor="price">Price</label>

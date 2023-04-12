@@ -37,6 +37,14 @@
     margin-bottom: 10px;
 }
 
+#numBathrooms{
+    width: 69%;
+}
+
+#numBedrooms{
+    width: 69%;
+}
+
 #images{
     display: flex;
     flex-direction: row;
