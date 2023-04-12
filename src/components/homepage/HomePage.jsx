@@ -109,7 +109,7 @@ const Homepage = () => {
               <button className="dropbtn" onClick={FilterData.bind(this, "Furniture")}>Furniture</button>
               <div className = "dropdown-content">
                 <button className = "dropdownBtn" onClick={FilterData.bind(this, "livingRoom")}>Living Room</button>
-                <button onClick={FilterData.bind(this, "kitchen")}>Kitchen</button>
+                <button onClick={FilterData.bind(this, "dining")}>Dining</button>
               </div>
             </div>
           </div>
