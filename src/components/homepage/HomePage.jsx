@@ -4,6 +4,7 @@ import "./Homepage.css";
 import logo from "../../images/paw.jpeg";
 import db from '../../..//firebase.js';
 import { useState, useReducer } from 'react';
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
 
@@ -82,9 +83,9 @@ const Homepage = () => {
               <img src={logo} />
             </span>
           </p>
-          <a href="/upload" className="To_upload_button">
+          <Link className="To_upload_button" to="/upload">
               <h4> ⬆️ Upload </h4>
-          </a>
+          </Link>
         </div>
 
         {/* search bar */}
