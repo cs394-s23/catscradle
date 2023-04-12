@@ -1,135 +1,78 @@
-.root {
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  margin-top: -113px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: black;
   text-align: center;
 }
 
-/* logo section */
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px;
-  background-color: #4b0082;
+.login-box .user-box {
+  position: relative;
 }
 
-.logo p {
-  color: white;
-  font-size: 32px;
-  margin-left: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.logo img {
-  height: 45px;
-  width: 45px;
-  margin-top: 5px;
-  object-fit: cover;
-}
-
-/* form styling */
-.form-container {
-  padding: 30px 300px;
-}
-
-form {
-  margin: auto;
-  width: 40%;
-}
-
-label {
-  width: 50%;
-  margin-top: 6px;
-}
-
-.form-control {
-  display: flex;
-}
-
-.form-container input {
-  background: none;
-}
-
-.form-container input[type="text"],
-.form-container input[type="password"],
-.form-container input[type="email"],
-select {
+.login-box .user-box input {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: black;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: purple;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: purple;
+  font-size: 12px;
+}
+
+.login-box form .submit-button {
+  position: relative;
   display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-
-  height: 4vh;
-  margin-left: 3px;
-}
-
-.form-container input[type="submit"] {
-  width: 100%;
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.login-caption {
-  display: block;
-  margin-top: 7px;
-}
-
-label {
-  text-align: left;
-}
-
-.form-container button[type="submit"] {
-  width: 8vw;
   padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 50px;
-  border: none;
-  background-color: #ffffff;
-  color: #4b0082;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  margin-right: 5px;
+  color: purple;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
 }
 
-.form-container button[type="submit"]:hover {
-  background-color: #9951cc;
-  color: white;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+.login-box .submit-button:hover {
+  background: purple;
+  color: #fff;
+  border-radius: 5px;
 }
 
-.submit-form {
-  margin-top: 10px;
-}
-
-h1 {
-  margin-top: 10px;
-}
-
-/* mobile responsive */
-@media screen and (max-width: 800px) {
-  .form-container {
-    padding: 0px;
-  }
-
-  form {
-    width: 80%;
-    margin: auto;
-  }
-
-  .form-container button[type="submit"] {
-    width: 42%;
-  }
-
-  .login-caption {
-    margin-top: 5px;
-  }
+.login-box .submit-button span {
+  position: absolute;
+  display: block;
 }

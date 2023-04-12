@@ -1,7 +1,9 @@
 import logo from "./paw.jpeg";
 import "./Signup.css";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -9,7 +11,13 @@ const Login = () => {
     password: "",
   });
 
-  let navigate = useNavigate();
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [icon, setIcon] = useState(faEye);
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+    let icon2 = icon == faEye ? faEyeSlash : faEye;
+    setIcon(icon2);
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,11 +27,13 @@ const Login = () => {
     }));
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(state);
+
     navigate("/");
     window.location.reload();
+    console.log(state);
   };
 
   return (
@@ -40,34 +50,31 @@ const Login = () => {
         </div>
 
         {/* form */}
-        <h1>Log In</h1>
-
-        <div className="form-container">
+        <div className="login-box">
+          <h2>Login</h2>
           <form onSubmit={handleSubmit}>
-            <div className="form-control">
-              <label>Email:</label>
+            <div className="user-box">
               <input
                 type="text"
                 name="email"
-                value={state.email}
+                required="!"
                 onChange={handleInputChange}
               />
+              <label>Email</label>
             </div>
-            <div className="form-control">
-              <label>Password:</label>
+            <div className="user-box">
               <input
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 name="password"
-                value={state.password}
+                required="!"
                 onChange={handleInputChange}
               />
+              <FontAwesomeIcon icon={icon} onClick={togglePassword} />
+              <label>Password</label>
             </div>
-            <div className="submit-form">
-              <button type="submit">Log In</button>
-              <span className="login-caption">
-                not a member? <Link to="/signup">Sign Up</Link>
-              </span>
-            </div>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
           </form>
         </div>
       </div>

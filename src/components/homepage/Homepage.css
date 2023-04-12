@@ -1,3 +1,31 @@
+.root {
+  text-align: center;
+}
+
+/* logo section */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  background-color: #4b0082;
+}
+
+.logo p {
+  color: white;
+  font-size: 32px;
+  margin-left: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.logo img {
+  height: 45px;
+  width: 45px;
+  margin-top: 5px;
+  object-fit: cover;
+}
+
 /* Reset margins and paddings */
 * {
   margin: 0;
@@ -199,8 +227,8 @@ input[type="text"] {
   background-color: white;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) and (max-device-width: 1024px) {
   .search-bar {
     padding: 20px;
   }
