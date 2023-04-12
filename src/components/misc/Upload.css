@@ -29,7 +29,7 @@
     overflow-y: scroll;
 }
 
-.up_form  div{
+.up_form div{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -37,15 +37,7 @@
     margin-bottom: 10px;
 }
 
-#numBathrooms{
-    width: 69%;
-}
-
-#numBedrooms{
-    width: 69%;
-}
-
-#images{
+/* #images{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -84,7 +76,7 @@
 
 #availableToDate{
     width: 72%;
-}
+} */
 
 #submit_button{
     width: 50%;
@@ -126,6 +118,22 @@ background-color: white;
 }
 
 .Upload input{
+    width: 80%;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    padding: 0 60px 0 45px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    background-size: contain;
+    background-repeat: no-repeat;
+    outline: 0;
+    background-position: 20px;
+    background-size: 20px;
+    font-size: 16px;
+}
+
+.Upload select{
     width: 80%;
     height: 50px;
     border-radius: 50px;

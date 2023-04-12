@@ -110,6 +110,10 @@ const Upload = () => {
                     </select>
                 </div>
                 <div>
+                    <label htmlFor="description">Description</label>
+                    <input type="text" id="description" name="description" placeholder="Enter description of item" />
+                </div>
+                <div>
                     <label htmlFor="numBathrooms">Number of Bathrooms</label>
                     <input type="number" id="numBathrooms" name="numBathrooms" placeholder="Enter the number of bathrooms" />
                 </div>
