@@ -75,18 +75,21 @@ const Homepage = () => {
     <div className="root">
       <div className="homePage">
         {/* logo and app name */}
-        <div className="logo">
+        <div className="hplogo">
           <p>
             <span style={{ fontSize: "40px" }}>CatsCradle</span>
             <span style={{ marginLeft: "5px" }}>
               <img src={logo} />
             </span>
           </p>
+          <a href="/upload" className="To_upload_button">
+              <h4> ⬆️ Upload </h4>
+          </a>
         </div>
 
         {/* search bar */}
         <div className="search-bar">
-          <input type="text" placeholder="Search" />
+          <input id="hpsearch" type="text" placeholder="Search" />
         </div>
 
         {/* buttons */}
