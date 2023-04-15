@@ -34,7 +34,12 @@ const Listing_details = (props) => {
                 </ul>
               </div>
             </div>
-            <p>{document.description}</p>
+            <div className="Description">
+              <p>
+                <b>Description</b>
+              </p>
+              <p>{document.description}</p>
+            </div>
           </div>
           <div className="Amenities">
             <p>Amenities</p>
@@ -78,7 +83,12 @@ const Listing_details = (props) => {
                 </ul>
               </div>
             </div>
-            <p>{document.description}</p>
+            <div className="Description">
+              <p>
+                <b>Description</b>
+              </p>
+              <p>{document.description}</p>
+            </div>
           </div>
         </div>
       </div>
