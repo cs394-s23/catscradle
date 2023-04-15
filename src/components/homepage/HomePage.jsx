@@ -101,10 +101,10 @@ const Homepage = () => {
               <button onClick={FilterData.bind(this, "Property")}>Property</button>
               <div className = "dropdown-input">
                 <div className="container">
-                  <input type="text" id="bedroom" name="bedroom"/>&nbsp;
-                  <b>Bedroom</b>&nbsp;
-                  <input type="text" id="bathroom" name="bathroom"/>&nbsp;
-                  <b>Bathroom</b>&nbsp;
+                  <input type="text" id="bedroom" name="bedroom" autocomplete="off" className="inputBox"/>&nbsp;
+                  <b className="room">Bedroom</b>&nbsp;
+                  <input type="text" id="bathroom" name="bathroom" autocomplete="off" className="inputBox"/>&nbsp;
+                  <b className="room">Bathroom</b>&nbsp;
                   <button onClick={getInputValue}>Find</button>
                 </div>
               </div>
@@ -112,7 +112,7 @@ const Homepage = () => {
             <div className="dropdown">
               <button className="dropbtn" onClick={FilterData.bind(this, "Furniture")}>Furniture</button>
               <div className = "dropdown-content">
-                <button className = "dropdownBtn" onClick={FilterData.bind(this, "livingRoom")}>Living Room</button>
+                <button onClick={FilterData.bind(this, "livingRoom")}>Living Room</button>
                 <button onClick={FilterData.bind(this, "dining")}>Dining</button>
               </div>
             </div>
