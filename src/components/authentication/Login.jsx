@@ -1,9 +1,12 @@
 import logo from "./paw.jpeg";
 import "./Signup.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import GoogleButton from "react-google-button";
+import { auth, provider } from "../../../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [state, setState] = useState({
@@ -30,10 +33,29 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-
     navigate("/");
     window.location.reload();
-    console.log(state);
+  };
+
+  // Handle google log in function
+
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        var userName = data.user.displayName;
+        var userEmail = data.user.email;
+        var imgUrl = data.user.photoURL;
+
+        localStorage.setItem("name", userName);
+        localStorage.setItem("email", userEmail);
+        localStorage.setItem("photo", imgUrl);
+
+        navigate("/");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -75,6 +97,15 @@ const Login = () => {
             <button type="submit" className="submit-button">
               Submit
             </button>
+
+            <div className="google-sign-in">
+              <span style={{ marginLeft: "-30px" }}> or </span>
+              <GoogleButton
+                type="dark"
+                label="Sign in"
+                onClick={signInWithGoogle}
+              />
+            </div>
           </form>
         </div>
       </div>
