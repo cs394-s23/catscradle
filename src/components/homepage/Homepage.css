@@ -158,10 +158,6 @@ div.buttons button:hover {
   z-index: 1;
 }
 
-.dropdownBtn {
-  width: 30px;
-}
-
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #ddd;
@@ -186,7 +182,7 @@ div.buttons button:hover {
   align-items: center;
   border: 1px solid black;
   padding: 5px;
-  width: 530px;
+  width: 500px;
   background-color: #9951cc;
   border-radius: 50px;
 }
@@ -198,8 +194,20 @@ label {
 
 input[type="text"] {
   flex: 2;
+  height: 40px;
+  width: 10px;
+  border-radius: 50px;
+  font-size:21px;
   border: none;
   outline: none;
+}
+
+.inputBox{
+  text-align: center;
+}
+
+.room{
+  font-size:18px;
 }
 
 /* listings */

@@ -21,23 +21,36 @@ const Homepage = () => {
       if (filterType == null) {
         querySnapshot = await db.collection("Properties").get();
       } else if (Array.isArray(filterType)) {
-        // console.log(typeof filterType[0]);
-        querySnapshot = await db
+        if (filterType.length == 3){
+          querySnapshot = await db
           .collection("Properties")
           .where("numBathrooms", "==", filterType[1])
           .where("numBedrooms", "==", filterType[0])
           .get();
+        }
+        else{
+          console.log(filterType)
+          querySnapshot = await db
+          .collection("Properties")
+          .where("price", ">=", parseInt(filterType[0]))
+          .where("price", "<=", parseInt(filterType[1]))
+          .get();
+        }
+        
       } else if (filterType == "Property") {
         querySnapshot = await db
           .collection("Properties")
           .where("itemType", "==", filterType)
           .get();
-      } else if (filterType == "Furniture") {
+      } 
+
+      else if (filterType == "Furniture"){
         querySnapshot = await db
           .collection("Properties")
           .where("itemType", "==", filterType)
           .get();
-      } else {
+      }
+      else {
         querySnapshot = await db
           .collection("Properties")
           .where("type", "==", filterType)
@@ -69,7 +82,14 @@ const Homepage = () => {
   const getInputValue = async () => {
     var bedroomNum = document.getElementById("bedroom").value;
     var bathroomNum = document.getElementById("bathroom").value;
-    var filterType = [bedroomNum, bathroomNum];
+    var filterType = [bedroomNum, bathroomNum, 0];
+    FilterData(filterType);
+  };
+
+  const getPrice = async () => {
+    var min = document.getElementById("min").value;
+    var max = document.getElementById("max").value;
+    var filterType = [min, max];
     FilterData(filterType);
   };
 
@@ -126,12 +146,12 @@ const Homepage = () => {
               </button>
               <div className="dropdown-input">
                 <div className="container">
-                  <input type="text" id="bedroom" name="bedroom" />
+                  <input type="text" id="bedroom" name="bedroom" autocomplete="off" className="inputBox"/>
                   &nbsp;
-                  <b>Bedroom</b>&nbsp;
-                  <input type="text" id="bathroom" name="bathroom" />
+                  <b className="room">Bedroom</b>&nbsp;
+                  <input type="text" id="bathroom" name="bathroom" autocomplete="off" className="inputBox"/>
                   &nbsp;
-                  <b>Bathroom</b>&nbsp;
+                  <b className="room">Bathroom</b>&nbsp;
                   <button onClick={getInputValue}>Find</button>
                 </div>
               </div>
@@ -144,8 +164,7 @@ const Homepage = () => {
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button
-                  className="dropdownBtn"
+                <button 
                   onClick={FilterData.bind(this, "livingRoom")}
                 >
                   Living Room
@@ -153,8 +172,24 @@ const Homepage = () => {
                 <button onClick={FilterData.bind(this, "dining")}>
                   Dining
                 </button>
+                
               </div>
             </div>
+            {/* <div className="dropdown">
+              <button>Price</button>
+              <div className="dropdown-input">
+                <div className="container">
+                  <b>Minimum</b>&nbsp;
+                  <input type="text" id="min" name="min" autocomplete="off" className="inputBox"/>
+                  &nbsp;
+                  <b>Maximum</b>&nbsp;
+                  <input type="text" id="max" name="max" autocomplete="off" className="inputBox"/>
+                  &nbsp;
+                  <button onClick={getPrice}>Find</button>
+                </div>
+              </div>
+            </div> */}
+            
           </div>
         </div>
 
