@@ -9,6 +9,47 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Upload = () => {
 
+    // const [submitButton, setSubmitButton] = useState();
+
+    // setSubmitButton(`<input id="submit_button" type="submit" value="Submit" onClick={submitListing}></input>`) // render first
+
+
+    function submitProgressBar() {
+
+        // var submitButton = document.getElementById("submitSection1");
+        // console.log(submitButton)
+        // console.log(submitButton.innerHtml)
+        // submitButton.innerHtml = `<div class="submitButtonProgress">`
+        // console.log(submitButton.innerHtml)
+        // console.log(submitButton)
+        // console.log("Changed")
+
+        var i = 0;
+        if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("submit_button");
+            var elem_max_width = elem.clientWidth;
+            elem.setAttribute("value", ""); // clear the button value
+
+            var currentWidth = 0;
+            var incrementSpeed = 0.3
+            elem.style.width = 1 + "px";
+            var id = setInterval(frame, 1);
+            
+            function frame() {
+            if (currentWidth > elem_max_width) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                currentWidth += incrementSpeed;
+                incrementSpeed += 0.01;
+                elem.style.width = currentWidth + "px"; //changed from % to px due to clientWidth changing
+            }
+            return true;
+            }
+        }
+    }
+
     async function submitListing() {
 
         // create new images url array
@@ -33,16 +74,6 @@ const Upload = () => {
         var sellerName = document.getElementById("sellerName").value;
         var sellerEmail = document.getElementById("sellerEmail").value;
         var sellerPhone = document.getElementById("sellerPhone").value;
-
-        // console.log(itemTitle);
-        // console.log(itemType);
-        // console.log(description);
-        // console.log(price);
-        // console.log(address);
-        // console.log(ammenities);
-        // console.log(images);
-        // console.log(availableFromDate);
-        // console.log(availableToDate);
 
         // Upload images first to Firebase Storage
         for (let i = 0; i < images.length; i++) {
@@ -83,10 +114,13 @@ const Upload = () => {
             }
         }
 
-        // Insert data into Firebase Real Time Database
-        const docRef = await addDoc(collection(db, "Properties"), dataPush);
-        console.log("Document written with ID: ", docRef.id);
-          
+        // // Insert data into Firebase Real Time Database
+        // const docRef = await addDoc(collection(db, "Properties"), dataPush);
+        // console.log(docRef);
+        // console.log("Document written with ID: ", docRef.id);
+        if (submitProgressBar()){
+            // window.location.href = await  "/";
+        }
     }
 
     return (
@@ -173,7 +207,9 @@ const Upload = () => {
                     <input type="text" id="sellerPhone" name="sellerPhone" placeholder="1112223333" />
                 </div>
 
-                <input id="submit_button" type="submit" value="Submit" onClick={submitListing}></input>
+                <div id="submitSection1">
+                    <input id="submit_button" type="submit" value="Submit" onClick={submitListing}></input>
+                </div>
             </form>
         </div>
     )
