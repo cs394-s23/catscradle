@@ -197,17 +197,17 @@ input[type="text"] {
   height: 40px;
   width: 10px;
   border-radius: 50px;
-  font-size:21px;
+  font-size: 21px;
   border: none;
   outline: none;
 }
 
-.inputBox{
+.inputBox {
   text-align: center;
 }
 
-.room{
-  font-size:18px;
+.room {
+  font-size: 18px;
 }
 
 /* listings */

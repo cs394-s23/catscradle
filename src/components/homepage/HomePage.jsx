@@ -21,36 +21,31 @@ const Homepage = () => {
       if (filterType == null) {
         querySnapshot = await db.collection("Properties").get();
       } else if (Array.isArray(filterType)) {
-        if (filterType.length == 3){
+        if (filterType.length == 3) {
           querySnapshot = await db
-          .collection("Properties")
-          .where("numBathrooms", "==", filterType[1])
-          .where("numBedrooms", "==", filterType[0])
-          .get();
-        }
-        else{
-          console.log(filterType)
+            .collection("Properties")
+            .where("numBathrooms", "==", filterType[1])
+            .where("numBedrooms", "==", filterType[0])
+            .get();
+        } else {
+          console.log(filterType);
           querySnapshot = await db
-          .collection("Properties")
-          .where("price", ">=", parseInt(filterType[0]))
-          .where("price", "<=", parseInt(filterType[1]))
-          .get();
+            .collection("Properties")
+            .where("price", ">=", parseInt(filterType[0]))
+            .where("price", "<=", parseInt(filterType[1]))
+            .get();
         }
-        
       } else if (filterType == "Property") {
         querySnapshot = await db
           .collection("Properties")
           .where("itemType", "==", filterType)
           .get();
-      } 
-
-      else if (filterType == "Furniture"){
+      } else if (filterType == "Furniture") {
         querySnapshot = await db
           .collection("Properties")
           .where("itemType", "==", filterType)
           .get();
-      }
-      else {
+      } else {
         querySnapshot = await db
           .collection("Properties")
           .where("type", "==", filterType)
@@ -101,10 +96,6 @@ const Homepage = () => {
   return (
     <div className="root">
       <div className="homePage">
-        {/* profile picture */}
-
-        {/* logo and app name */}
-
         <div className="hplogo">
           <p>
             <span style={{ fontSize: "40px" }}>CatsCradle</span>
@@ -146,10 +137,22 @@ const Homepage = () => {
               </button>
               <div className="dropdown-input">
                 <div className="container">
-                  <input type="text" id="bedroom" name="bedroom" autocomplete="off" className="inputBox"/>
+                  <input
+                    type="text"
+                    id="bedroom"
+                    name="bedroom"
+                    autocomplete="off"
+                    className="inputBox"
+                  />
                   &nbsp;
                   <b className="room">Bedroom</b>&nbsp;
-                  <input type="text" id="bathroom" name="bathroom" autocomplete="off" className="inputBox"/>
+                  <input
+                    type="text"
+                    id="bathroom"
+                    name="bathroom"
+                    autocomplete="off"
+                    className="inputBox"
+                  />
                   &nbsp;
                   <b className="room">Bathroom</b>&nbsp;
                   <button onClick={getInputValue}>Find</button>
@@ -164,15 +167,12 @@ const Homepage = () => {
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button 
-                  onClick={FilterData.bind(this, "livingRoom")}
-                >
+                <button onClick={FilterData.bind(this, "livingRoom")}>
                   Living Room
                 </button>
                 <button onClick={FilterData.bind(this, "dining")}>
                   Dining
                 </button>
-                
               </div>
             </div>
             {/* <div className="dropdown">
@@ -189,7 +189,6 @@ const Homepage = () => {
                 </div>
               </div>
             </div> */}
-            
           </div>
         </div>
 
