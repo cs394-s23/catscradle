@@ -148,14 +148,17 @@ const Upload = () => {
           phone: sellerPhone,
         },
       };
+
+      
     }
 
     // // Insert data into Firebase Real Time Database
     const docRef = await addDoc(collection(db, "Properties"), dataPush);
     console.log(docRef);
     console.log("Document written with ID: ", docRef.id);
+
     if (submitProgressBar()) {
-      // window.location.href = await  "/";
+      window.location.href = await  "/";
     }
   }
 

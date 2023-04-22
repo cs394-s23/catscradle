@@ -9,12 +9,17 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   // Consts and functions for the homePage
   const [info, setInfo] = useState([]);
+  const [dataFetched, setDataFetched] = useState(false);
 
   // ********** HELPER FUNCTIONS **********
 
   // Fetch the required data using the get() method
   // Made this into an asynchronous function in order to allow the data to be fetched before it is used
   const Fetchdata = async (filterType) => {
+
+    setDataFetched(true);
+    console.log("Fetching data...");
+
     try {
       var querySnapshot = null;
 
@@ -70,9 +75,9 @@ const Homepage = () => {
   };
 
   // Start the fetch operation as soon as the page loads
-  window.addEventListener("load", () => {
+  if (!dataFetched){
     Fetchdata();
-  });
+  }
 
   const getInputValue = async () => {
     var bedroomNum = document.getElementById("bedroom").value;
