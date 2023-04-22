@@ -1,6 +1,5 @@
 import logo from "./paw.jpeg";
 import "./Login.css";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { auth, provider } from "../../../firebase";

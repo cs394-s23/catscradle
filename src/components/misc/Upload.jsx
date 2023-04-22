@@ -1,219 +1,332 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useState, useReducer } from 'react';
-import db from '../../../firebase.js';
-import { storage } from '../../../firebase.js';
+import { useState, useReducer } from "react";
+import db from "../../../firebase.js";
+import { storage } from "../../../firebase.js";
+import { Link } from "react-router-dom";
 import "./Upload.css";
-import { collection, addDoc } from "firebase/firestore"; 
+import logo from "./paw.jpeg";
+import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const Upload = () => {
+  // using states now instead of vanilla JS
+  const [propertyType, setPropertyType] = useState("");
+  const [address, setAddress] = useState("");
+  const [numBedrooms, setNumBedrooms] = useState("");
+  const [numBathrooms, setNumBathrooms] = useState("");
+  const [images, setImages] = useState([]);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [error, setError] = useState(false);
+  const [errorMessages, setErrorMessages] = useState([]);
+  const [title, setTitle] = useState("");
+  const [phone, setPhone] = useState("");
 
-    // const [submitButton, setSubmitButton] = useState();
+  // input handlers
+  const handlePropertyTypeChange = (e) => {
+    setPropertyType(e.target.value);
+  };
 
-    // setSubmitButton(`<input id="submit_button" type="submit" value="Submit" onClick={submitListing}></input>`) // render first
+  const handleAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
 
+  const handleNumBedroomsChange = (e) => {
+    setNumBedrooms(e.target.value);
+  };
 
-    function submitProgressBar() {
+  const handleNumBathroomsChange = (e) => {
+    setNumBathrooms(e.target.value);
+  };
 
-        // var submitButton = document.getElementById("submitSection1");
-        // console.log(submitButton)
-        // console.log(submitButton.innerHtml)
-        // submitButton.innerHtml = `<div class="submitButtonProgress">`
-        // console.log(submitButton.innerHtml)
-        // console.log(submitButton)
-        // console.log("Changed")
+  const handlePhoneNumber = (e) => {
+    setPhone(e.target.value);
+  };
 
-        var i = 0;
-        if (i == 0) {
-            i = 1;
-            var elem = document.getElementById("submit_button");
-            var elem_max_width = elem.clientWidth;
-            elem.setAttribute("value", ""); // clear the button value
+  const handleImageChange = (e) => {
+    setImages(Array.from(e.target.files));
+  };
 
-            var currentWidth = 0;
-            var incrementSpeed = 0.3
-            elem.style.width = 1 + "px";
-            var id = setInterval(frame, 1);
-            
-            function frame() {
-            if (currentWidth > elem_max_width) {
-                clearInterval(id);
-                i = 0;
-            } else {
-                currentWidth += incrementSpeed;
-                incrementSpeed += 0.01;
-                elem.style.width = currentWidth + "px"; //changed from % to px due to clientWidth changing
-            }
-            return true;
-            }
-        }
-    }
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
 
-    async function submitListing() {
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
 
-        // create new images url array
-        var img_urls = []
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value);
+  };
 
-        event.preventDefault(); // prevent refresh page
+  // form validation;
 
-        // Get value of each of form's input
-        var itemTitle = document.getElementById("itemTitle").value;
-        var itemType = document.getElementById("itemType").value;
-        var numBathrooms = document.getElementById("numBathrooms").value;
-        var numBedrooms = document.getElementById("numBedrooms").value;
-        var description = document.getElementById("description").value;
-        var price = document.getElementById("price").value;
-        var address = document.getElementById("address").value;
-        var ammenities = document.getElementById("ammenities").value.split(", ");
-        var images = document.getElementById("images").files;
-        var availableFromDate = document.getElementById("availableFromDate").value; // may need to turn into datetime
-        var availableToDate = document.getElementById("availableToDate").value; // may need to turn into datetime
-        var condition = document.getElementById("condition").value;
-        var propertyClass = document.getElementById("propertyClass").value;
-        var sellerName = document.getElementById("sellerName").value;
-        var sellerEmail = document.getElementById("sellerEmail").value;
-        var sellerPhone = document.getElementById("sellerPhone").value;
+  //   function submitProgressBar() {
+  //     // var submitButton = document.getElementById("submitSection1");
+  //     // console.log(submitButton)
+  //     // console.log(submitButton.innerHtml)
+  //     // submitButton.innerHtml = `<div class="submitButtonProgress">`
+  //     // console.log(submitButton.innerHtml)
+  //     // console.log(submitButton)
+  //     // console.log("Changed")
 
-        // Upload images first to Firebase Storage
-        for (let i = 0; i < images.length; i++) {
-            const imageRef = ref(storage, "images/" + images[i].name);
-            await uploadBytes(imageRef, images[i]).then(async() => {
-                await getDownloadURL(imageRef)
-                    .then((url) => {
-                        img_urls.push(url);
-                    })
-                    .catch((error) => {
-                        console.log(error.message, "error getting the image url");
-                    });
+  //     var i = 0;
+  //     if (i == 0) {
+  //       i = 1;
+  //       var elem = document.getElementById("submit_button");
+  //       var elem_max_width = elem.clientWidth;
+  //       elem.setAttribute("value", ""); // clear the button value
+
+  //       var currentWidth = 0;
+  //       var incrementSpeed = 0.3;
+  //       elem.style.width = 1 + "px";
+  //       var id = setInterval(frame, 1);
+
+  //       function frame() {
+  //         if (currentWidth > elem_max_width) {
+  //           clearInterval(id);
+  //           i = 0;
+  //         } else {
+  //           currentWidth += incrementSpeed;
+  //           incrementSpeed += 0.01;
+  //           elem.style.width = currentWidth + "px"; //changed from % to px due to clientWidth changing
+  //         }
+  //         return true;
+  //       }
+  //     }
+  //   }
+
+  //
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    // Upload images first to Firebase Storage
+    for (let i = 0; i < images.length; i++) {
+      const imageRef = ref(storage, "images/" + images[i].name);
+      await uploadBytes(imageRef, images[i])
+        .then(async () => {
+          await getDownloadURL(imageRef)
+            .then((url) => {
+              img_urls.push(url);
             })
             .catch((error) => {
-                console.log(error.message, "error uploading the image");
+              console.log(error.message, "error getting the image url");
             });
-        };
-
-        // Create custom data type
-        var dataPush = {
-            itemTitle : itemTitle,
-            itemType: itemType,
-            numBathrooms: numBathrooms,
-            numBedrooms: numBedrooms,
-            description: description,
-            price: price,
-            address: address,
-            ammenities: ammenities,
-            availableFrom: availableFromDate,
-            availableTo: availableToDate,
-            images: img_urls,
-            condition: condition,
-            propertyClass: propertyClass,
-            seller: {
-                name: sellerName,
-                email: sellerEmail,
-                phone: sellerPhone
-            }
-        }
-
-        // // Insert data into Firebase Real Time Database
-        const docRef = await addDoc(collection(db, "Properties"), dataPush);
-        console.log(docRef);
-        console.log("Document written with ID: ", docRef.id);
-        if (submitProgressBar()){
-            // window.location.href = await  "/";
-        }
+        })
+        .catch((error) => {
+          console.log(error.message, "error uploading the image");
+        });
     }
 
-    return (
-        <div className="Upload">
-            <div className="up_header">
-                <h1> Upload a new listing </h1>
-                <a href="/" className="Return_home_button">
-                    <h4> 🏠 Return to Home </h4>
-                </a>
-            </div>
-            <form className="up_form">
-                <div>
-                    <label htmlFor="itemTitle">Title</label>
-                    <input type="text" id="itemTitle" name="itemTitle" placeholder="Title of your listing" />
-                </div> 
-                <div>
-                    <label htmlFor="itemType">Item Type</label>
-                    <select id="itemType" name="items" required defaultValue={'Property'}>
-                        <option value="property">Property</option>
-                        <option value="furniture">Furniture</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <input type="text" id="description" name="description" placeholder="Enter description of item" />
-                </div>
-                <div>
-                    <label htmlFor="numBathrooms">Number of Bathrooms</label>
-                    <input type="number" id="numBathrooms" name="numBathrooms" placeholder="Enter the number of bathrooms" />
-                </div>
-                <div>
-                    <label htmlFor="numBedrooms">Number of Bedrooms</label>
-                    <input type="number" id="numBedrooms" name="numBedrooms" placeholder="Enter the number of bedrooms" />
-                </div>
-                <div>
-                    <label htmlFor="price">Price</label>
-                    <input type="text" id="price" name="price" placeholder="Price of your listing" />
-                </div>
-                <div>
-                    <label htmlFor="address">Address</label>
-                    <input type="text" id="address" name="address" placeholder="Address of your listing" />
-                </div>
-                <div>
-                    <label htmlFor="ammenities">Ammenities</label>
-                    <input type="text" id="ammenities" name="ammenities" placeholder="e.g. gym, pool, (seperate using commas)" />
-                </div>
-                <div>
-                    <label htmlFor="images">Images</label>
-                    <input type="file" id="images" name="images" multiple="multiple"/>
-                </div>
-                <div>
-                    <label htmlFor="availableFromDate">Available From</label>
-                    <input type="date" id="availableFromDate" name="availableFromDate" />
-                </div>
-                <div>
-                    <label htmlFor="availableToDate">Available To</label>
-                    <input type="date" id="availableToDate" name="availableToDate" />
-                </div>
-                <div>
-                    <label htmlFor="condition">Condition</label>
-                    <select id="condition" name="condition" required defaultValue={'New'}>
-                        <option value="New">New</option>
-                        <option value="Used">Used</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="propertyClass">Property Type</label>
-                    <select id="propertyClass" name="propertyClass" required defaultValue={'Apartment'}>
-                        <option value="Apartment">Apartment</option>
-                        <option value="Studio">Studio</option>
-                        <option value="Room">Room</option>
-                    </select>
-                </div>
-                <div>
-                    <label htmlFor="sellerName">Seller Name</label>
-                    <input type="text" id="sellerName" name="sellerName" placeholder="Johnny Appleseed" />
-                </div>
-                <div>
-                    <label htmlFor="sellerEmail">Seller Email</label>
-                    <input type="text" id="sellerEmail" name="sellerEmail" placeholder="j.a@gmail.com" />
-                </div>
-                <div>
-                    <label htmlFor="sellerPhone">Seller Phone</label>
-                    <input type="text" id="sellerPhone" name="sellerPhone" placeholder="1112223333" />
-                </div>
+    // Create custom data type
+    if (propertyType == "furniture") {
+      var dataPush = {
+        itemTitle: itemTitle,
+        itemType: itemType,
+        price: price,
+        images: img_urls,
+        seller: {
+          name: sellerName,
+          email: sellerEmail,
+          phone: sellerPhone,
+        },
+      };
+    } else {
+      var dataPush = {
+        itemTitle: itemTitle,
+        itemType: itemType,
+        numBathrooms: numBathrooms,
+        numBedrooms: numBedrooms,
+        description: description,
+        price: price,
+        address: address,
+        images: img_urls,
+        seller: {
+          name: sellerName,
+          email: sellerEmail,
+          phone: sellerPhone,
+        },
+      };
+    }
 
-                <div id="submitSection1">
-                    <input id="submit_button" type="submit" value="Submit" onClick={submitListing}></input>
-                </div>
-            </form>
+    // // Insert data into Firebase Real Time Database
+    const docRef = await addDoc(collection(db, "Properties"), dataPush);
+    console.log(docRef);
+    console.log("Document written with ID: ", docRef.id);
+    if (submitProgressBar()) {
+      // window.location.href = await  "/";
+    }
+  }
+
+  return (
+    <div className="root">
+      {/* logo and app name */}
+      <div className="logo">
+        <p>
+          <span style={{ fontSize: "40px" }}>CatsCradle</span>
+          <span style={{ marginLeft: "5px" }}>
+            <img src={logo} />
+          </span>
+        </p>
+      </div>
+
+      <Link className="return-home-btn" to="/">
+        Home
+      </Link>
+
+      <form onSubmit={handleSubmit} id="uploadForm">
+        {error
+          ? message.map((x, idx) => (
+              <p key={idx} style={{ color: "red" }}>
+                {x}
+              </p>
+            ))
+          : ""}
+        <div className="upload-form-control">
+          <label> Property Type:</label>
+          <select value={propertyType} onChange={handlePropertyTypeChange}>
+            <option value=""> Please choose an option </option>
+            <option value="property">Property</option>
+            <option value="furniture">Furniture</option>
+          </select>
         </div>
-    )
 
-}
+        {propertyType === "property" ? (
+          <>
+            <div className="upload-form-control">
+              <label>Title: </label>
+              <input
+                type="text"
+                value={title}
+                onChange={handleTitleChange}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label>Address: </label>
+              <input
+                type="text"
+                value={address}
+                onChange={handleAddressChange}
+                required
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label>Number of Bedrooms: </label>
+              <input
+                type="number"
+                value={numBedrooms}
+                onChange={handleNumBedroomsChange}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label>Number of Bathrooms: </label>
+              <input
+                type="number"
+                value={numBathrooms}
+                onChange={handleNumBathroomsChange}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label>Images of the Apartment: </label>
+              <input
+                type="file"
+                multiple
+                onChange={handleImageChange}
+                required
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label>Price:</label>
+              <input
+                type="number"
+                value={price}
+                onChange={handlePriceChange}
+                required
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label>Phone Number:</label>
+              <input
+                type="number"
+                value={phone}
+                onChange={handlePhoneNumber}
+                required
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label>Description: </label>
+              <textarea
+                value={description}
+                onChange={handleDescriptionChange}
+                required
+              />
+            </div>
+          </>
+        ) : propertyType === "furniture" ? (
+          <>
+            <div className="upload-form-control">
+              <label>Title: </label>
+              <input
+                type="text"
+                value={title}
+                onChange={handleTitleChange}
+                required
+              />
+            </div>
+            <div>
+              <div className="upload-form-control">
+                <label>Images of the Apartment: </label>
+                <input
+                  type="file"
+                  multiple
+                  onChange={handleImageChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="upload-form-control">
+              <label> Price: </label>
+              <input
+                type="number"
+                value={price}
+                onChange={handlePriceChange}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label> Description: </label>
+              <textarea
+                value={description}
+                onChange={handleDescriptionChange}
+                required
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label>Phone Number:</label>
+              <input
+                type="number"
+                value={phone}
+                onChange={handlePhoneNumber}
+                required
+              />
+            </div>
+          </>
+        ) : null}
+        <button id="uploadFormSubmitBtn" type="submit">
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+};
 
 export default Upload;
