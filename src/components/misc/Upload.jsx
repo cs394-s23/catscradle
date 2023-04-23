@@ -63,7 +63,10 @@ const Upload = () => {
     setPrice(e.target.value);
   };
 
-  // form validation;
+  // form validation:
+  // 1. Check photo is PNG or JPEG
+  // 2. Apporpriate units per different input type
+  //
 
 
   // Handle Form Submission
