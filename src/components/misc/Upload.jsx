@@ -22,6 +22,7 @@ const Upload = () => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
+  const [submitButton, setSubmitButton] = useState("Submit");
 
   var img_urls = [];
 
@@ -64,44 +65,12 @@ const Upload = () => {
 
   // form validation;
 
-  //   function submitProgressBar() {
-  //     // var submitButton = document.getElementById("submitSection1");
-  //     // console.log(submitButton)
-  //     // console.log(submitButton.innerHtml)
-  //     // submitButton.innerHtml = `<div class="submitButtonProgress">`
-  //     // console.log(submitButton.innerHtml)
-  //     // console.log(submitButton)
-  //     // console.log("Changed")
 
-  //     var i = 0;
-  //     if (i == 0) {
-  //       i = 1;
-  //       var elem = document.getElementById("submit_button");
-  //       var elem_max_width = elem.clientWidth;
-  //       elem.setAttribute("value", ""); // clear the button value
-
-  //       var currentWidth = 0;
-  //       var incrementSpeed = 0.3;
-  //       elem.style.width = 1 + "px";
-  //       var id = setInterval(frame, 1);
-
-  //       function frame() {
-  //         if (currentWidth > elem_max_width) {
-  //           clearInterval(id);
-  //           i = 0;
-  //         } else {
-  //           currentWidth += incrementSpeed;
-  //           incrementSpeed += 0.01;
-  //           elem.style.width = currentWidth + "px"; //changed from % to px due to clientWidth changing
-  //         }
-  //         return true;
-  //       }
-  //     }
-  //   }
-
-  //
+  // Handle Form Submission
   async function handleSubmit(e) {
     e.preventDefault();
+
+    var dataPush = {}
 
     var sellerEmail = localStorage.getItem("email");
     var sellerName = localStorage.getItem("name");
@@ -109,9 +78,9 @@ const Upload = () => {
     // Upload images first to Firebase Storage
     for (let i = 0; i < images.length; i++) {
       const imageRef = ref(storage, "images/" + images[i].name);
-      await uploadBytes(imageRef, images[i])
+      uploadBytes(imageRef, images[i])
         .then(async () => {
-          await getDownloadURL(imageRef)
+          getDownloadURL(imageRef)
             .then((url) => {
               img_urls.push(url);
             })
@@ -124,12 +93,14 @@ const Upload = () => {
         });
     }
 
-    console.log("Images Successfully Uploaded to Firebase Storage")
-
-    var dataPush = {}
+    if (images.length > 0) {
+      console.log("Images Successfully Uploaded to Firebase Storage")
+    } else {
+      console.log("No images submitted by user...")
+    }
 
     // Create custom data type
-    if (propertyType == "furniture") {
+    if (await propertyType == "furniture") {
       dataPush = {
         itemTitle: title,
         itemType: propertyType,
@@ -157,19 +128,26 @@ const Upload = () => {
           phone: phone,
         },
       };
-    }
+    };
 
-    console.log("Pushing data to firebase...")
-    console.log(dataPush)
+    await console.log("Pushing data to firebase...")
+    await console.log(dataPush)
 
-    // // Insert data into Firebase Real Time Database
+    // Insert data into Firebase Firestore Document Stage
+    await setSubmitButton("Uploading...");
+
     const docRef = await addDoc(collection(db, "Properties"), dataPush);
-    console.log(docRef);
-    console.log("Document written with ID: ", docRef.id);
+    await console.log(docRef);
+    await console.log("Document written with ID: ", docRef.id);
 
-    if (submitProgressBar()) {
-      window.location.href = await  "/";
-    }
+    await setSubmitButton("Done!");
+
+    // wait 1 second
+    await setTimeout(() => {
+      console.log("Delayed for 1 seconds");
+      window.location.href = "/"
+    }, "1000");
+
   }
 
   return (
@@ -335,7 +313,7 @@ const Upload = () => {
           </>
         ) : null}
         <button id="uploadFormSubmitBtn" type="submit">
-          Submit
+          {submitButton}
         </button>
       </form>
     </div>

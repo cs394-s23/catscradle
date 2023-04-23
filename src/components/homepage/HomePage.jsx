@@ -146,7 +146,7 @@ const Homepage = () => {
                     type="text"
                     id="bedroom"
                     name="bedroom"
-                    autocomplete="off"
+                    autoComplete="off"
                     className="inputBox"
                   />
                   &nbsp;
@@ -155,7 +155,7 @@ const Homepage = () => {
                     type="text"
                     id="bathroom"
                     name="bathroom"
-                    autocomplete="off"
+                    autoComplete="off"
                     className="inputBox"
                   />
                   &nbsp;
