@@ -9,94 +9,107 @@ import { Link } from "react-router-dom";
 const Homepage = () => {
   // Consts and functions for the homePage
   const [info, setInfo] = useState([]);
+  const [filterInfo, setFilterInfo] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
+
+  // Filters variables
+  const [bedroomFilter, setBedroomFilter] = useState("");
+  const [bathroomFilter, setBathroomFilter] = useState("");
+  const [furnitureType, setFurnitureType] = useState("");
+
+  // logout
+  const handleLogOut = (event) => {
+    localStorage.clear();
+  };
 
   // ********** HELPER FUNCTIONS **********
 
   // Fetch the required data using the get() method
   // Made this into an asynchronous function in order to allow the data to be fetched before it is used
-  const Fetchdata = async (filterType) => {
+  const Fetchdata = async () => {
 
     setDataFetched(true);
     console.log("Fetching data...");
 
     try {
       var querySnapshot = null;
-
-      if (filterType == null) {
-        querySnapshot = await db.collection("Properties").get();
-      } else if (Array.isArray(filterType)) {
-        if (filterType.length == 3) {
-          querySnapshot = await db
-            .collection("Properties")
-            .where("numBathrooms", "==", filterType[1])
-            .where("numBedrooms", "==", filterType[0])
-            .get();
-        } else {
-          console.log(filterType);
-          querySnapshot = await db
-            .collection("Properties")
-            .where("price", ">=", parseInt(filterType[0]))
-            .where("price", "<=", parseInt(filterType[1]))
-            .get();
-        }
-      } else if (filterType == "Property") {
-        querySnapshot = await db
-          .collection("Properties")
-          .where("itemType", "==", filterType)
-          .get();
-      } else if (filterType == "Furniture") {
-        querySnapshot = await db
-          .collection("Properties")
-          .where("itemType", "==", filterType)
-          .get();
-      } else {
-        querySnapshot = await db
-          .collection("Properties")
-          .where("type", "==", filterType)
-          .get();
-        // console.log(querySnapshot);
-      }
+      querySnapshot = await db.collection("Properties").get();
 
       // Loop through the data and store it in ARRAY to display
       querySnapshot.forEach((element) => {
         var data = element.data();
         // console.log(data);
         setInfo((arr) => [...arr, data]);
+        setFilterInfo((arr) => [...arr, data]);
       });
     } catch (error) {
       console.log(error);
     }
+
   };
 
-  const FilterData = async (filterType) => {
-    document.getElementById("HPListings").innerHTML = "";
-    Fetchdata(filterType);
+  // Filtering data
+  const FilterData = () => {
+
+    var nextFilterInfo = [];
+
+
+    for (var i = 0; i < info.length; i++){
+
+      var currentCard = info[i];
+
+      // Filter in all different directions
+      // 1. Filter room counts (bedroom and bathroom)
+      var roomBool = bathroomFilter == "" || bathroomFilter == null|| currentCard.numBathrooms == bathroomFilter;
+      var bedBool = bedroomFilter == "" || bedroomFilter == null || currentCard.numBedrooms == bedroomFilter;
+
+      // 2. Filter by furnite type
+      var isType = furnitureType == "" || currentCard.itemType.toLowerCase() == furnitureType.toLowerCase();
+
+      // 3. Filter by price
+
+      console.log("Info Card: ", i);
+      console.log(furnitureType.toLowerCase()=="");
+      console.log(currentCard.itemType.toLowerCase(), furnitureType.toLowerCase(), furnitureType == "" && currentCard.itemType.toLowerCase() == furnitureType.toLowerCase())
+      console.log()
+
+      if (roomBool && bedBool && isType){
+
+        nextFilterInfo.push(currentCard);
+
+      }
+
+      console.log(currentCard.numBathrooms);
+    }
+
+    setFilterInfo(nextFilterInfo);
+
   };
 
+  const resetData = () => {
+    setFilterInfo(info);
+  }
+
+
+  // Always run this on page startup
   // Start the fetch operation as soon as the page loads
   if (!dataFetched){
     Fetchdata();
   }
 
-  const getInputValue = async () => {
-    var bedroomNum = document.getElementById("bedroom").value;
-    var bathroomNum = document.getElementById("bathroom").value;
-    var filterType = [bedroomNum, bathroomNum, 0];
-    FilterData(filterType);
-  };
+  // Change values of the states
+  const handleNumBathroomsChange = (e) => {
+    setBathroomFilter(e.target.value);
+  }
 
-  const getPrice = async () => {
-    var min = document.getElementById("min").value;
-    var max = document.getElementById("max").value;
-    var filterType = [min, max];
-    FilterData(filterType);
-  };
+  const handleNumBedroomsChange = (e) => {
+    setBedroomFilter(e.target.value);
+  }
 
-  // logout
-  const handleLogOut = (event) => {
-    localStorage.clear();
-  };
+  const handleFurnitureType = (e) => {
+    setFurnitureType(e.target.value);
+  }
+
 
   return (
     <div className="root">
@@ -135,32 +148,36 @@ const Homepage = () => {
         {/* buttons */}
         <div className="buttons-list">
           <div className="buttons">
-            <button onClick={FilterData.bind(this, null)}>All</button>
+            <button onClick={resetData}>All</button>
             <div className="dropdown">
-              <button onClick={FilterData.bind(this, "Property")}>
+              <button onClick={FilterData}>
                 Property
               </button>
               <div className="dropdown-input">
                 <div className="container">
                   <input
-                    type="text"
+                    type="number"
+                    value={bedroomFilter}
                     id="bedroom"
                     name="bedroom"
                     autoComplete="off"
                     className="inputBox"
+                    onChange={handleNumBedroomsChange}
                   />
                   &nbsp;
                   <b className="room">Bedroom</b>&nbsp;
                   <input
-                    type="text"
+                    type="number"
+                    value={bathroomFilter}
                     id="bathroom"
                     name="bathroom"
                     autoComplete="off"
                     className="inputBox"
+                    onChange={handleNumBathroomsChange}
                   />
                   &nbsp;
                   <b className="room">Bathroom</b>&nbsp;
-                  <button onClick={getInputValue}>Find</button>
+                  <button onClick={FilterData}>Find</button>
                 </div>
               </div>
             </div>
@@ -172,10 +189,10 @@ const Homepage = () => {
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button onClick={FilterData.bind(this, "livingRoom")}>
+                <button onClick={handleFurnitureType}>
                   Living Room
                 </button>
-                <button onClick={FilterData.bind(this, "dining")}>
+                <button onClick={handleFurnitureType}>
                   Dining
                 </button>
               </div>
@@ -199,7 +216,7 @@ const Homepage = () => {
 
         {/* Listings */}
         <div className="listings" id="HPListings">
-          {info.map((obj, index) => (
+          {filterInfo.map((obj, index) => (
             <Post document={obj} key={index} />
           ))}
         </div>
