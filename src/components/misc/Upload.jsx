@@ -23,6 +23,8 @@ const Upload = () => {
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
 
+  var img_urls = [];
+
   // input handlers
   const handlePropertyTypeChange = (e) => {
     setPropertyType(e.target.value);
@@ -101,6 +103,9 @@ const Upload = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    var sellerEmail = localStorage.getItem("email");
+    var sellerName = localStorage.getItem("name");
+
     // Upload images first to Firebase Storage
     for (let i = 0; i < images.length; i++) {
       const imageRef = ref(storage, "images/" + images[i].name);
@@ -111,7 +116,7 @@ const Upload = () => {
               img_urls.push(url);
             })
             .catch((error) => {
-              console.log(error.message, "error getting the image url");
+              console.log(error.message, ", error getting the image url");
             });
         })
         .catch((error) => {
@@ -119,23 +124,27 @@ const Upload = () => {
         });
     }
 
+    console.log("Images Successfully Uploaded to Firebase Storage")
+
+    var dataPush = {}
+
     // Create custom data type
     if (propertyType == "furniture") {
-      var dataPush = {
-        itemTitle: itemTitle,
-        itemType: itemType,
+      dataPush = {
+        itemTitle: title,
+        itemType: propertyType,
         price: price,
         images: img_urls,
         seller: {
           name: sellerName,
           email: sellerEmail,
-          phone: sellerPhone,
+          phone: phone,
         },
       };
     } else {
-      var dataPush = {
-        itemTitle: itemTitle,
-        itemType: itemType,
+      dataPush = {
+        itemTitle: title,
+        itemType: propertyType,
         numBathrooms: numBathrooms,
         numBedrooms: numBedrooms,
         description: description,
@@ -145,12 +154,13 @@ const Upload = () => {
         seller: {
           name: sellerName,
           email: sellerEmail,
-          phone: sellerPhone,
+          phone: phone,
         },
       };
-
-      
     }
+
+    console.log("Pushing data to firebase...")
+    console.log(dataPush)
 
     // // Insert data into Firebase Real Time Database
     const docRef = await addDoc(collection(db, "Properties"), dataPush);
@@ -286,7 +296,7 @@ const Upload = () => {
             </div>
             <div>
               <div className="upload-form-control">
-                <label>Images of the Apartment: </label>
+                <label>Images of the Furniture Piece: </label>
                 <input
                   type="file"
                   multiple
