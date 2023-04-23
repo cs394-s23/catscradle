@@ -3,7 +3,7 @@ import Post from "./Post";
 import "./Homepage.css";
 import logo from "../../images/paw.jpeg";
 import db from "../../..//firebase.js";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -15,7 +15,10 @@ const Homepage = () => {
   // Filters variables
   const [bedroomFilter, setBedroomFilter] = useState("");
   const [bathroomFilter, setBathroomFilter] = useState("");
-  const [furnitureType, setFurnitureType] = useState("");
+  const [furnitureType, setFurnitureType] = useState(""); // living room or dining room
+  const [cardType, setCardType] = useState(""); // property or furniture
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   // logout
   const handleLogOut = (event) => {
@@ -29,7 +32,6 @@ const Homepage = () => {
   const Fetchdata = async () => {
 
     setDataFetched(true);
-    console.log("Fetching data...");
 
     try {
       var querySnapshot = null;
@@ -53,33 +55,68 @@ const Homepage = () => {
 
     var nextFilterInfo = [];
 
-
     for (var i = 0; i < info.length; i++){
 
       var currentCard = info[i];
 
       // Filter in all different directions
       // 1. Filter room counts (bedroom and bathroom)
-      var roomBool = bathroomFilter == "" || bathroomFilter == null|| currentCard.numBathrooms == bathroomFilter;
-      var bedBool = bedroomFilter == "" || bedroomFilter == null || currentCard.numBedrooms == bedroomFilter;
+      var bathroomNull = bathroomFilter == "" || bathroomFilter == null
+      var bedroomNull = bedroomFilter == "" || bedroomFilter == null
+      var bathBool = true;
+      var bedBool = true;
 
-      // 2. Filter by furnite type
-      var isType = furnitureType == "" || currentCard.itemType.toLowerCase() == furnitureType.toLowerCase();
-
-      // 3. Filter by price
-
-      console.log("Info Card: ", i);
-      console.log(furnitureType.toLowerCase()=="");
-      console.log(currentCard.itemType.toLowerCase(), furnitureType.toLowerCase(), furnitureType == "" && currentCard.itemType.toLowerCase() == furnitureType.toLowerCase())
-      console.log()
-
-      if (roomBool && bedBool && isType){
-
-        nextFilterInfo.push(currentCard);
-
+      if (typeof(currentCard.numBathrooms) != "undefined"){
+        var bathBool = currentCard.numBathrooms == bathroomFilter;
       }
 
-      console.log(currentCard.numBathrooms);
+      if (typeof(!currentCard.numBedrooms) != "undefined"){
+        var bedBool = currentCard.numBedrooms == bedroomFilter;
+      }
+
+      // 2. Filter by furnite type
+      var furnitureNull = furnitureType == "" || furnitureType == null
+      var furniBool = true;
+
+      if (typeof(currentCard.type) != "undefined"){
+        var furniBool = currentCard.type.toLowerCase() == furnitureType.toLowerCase();
+      }
+
+      // 3. Filter by Card Type (furniture or property)
+      // Will never by null since it is required field
+      var cardTypeNull = cardType == "" || cardType == null;
+      var cardTypeBool = currentCard.itemType.toLowerCase() == cardType.toLowerCase();
+
+
+      // 4. Filter by price
+      var cardPrice = parseInt(currentCard.price);
+      var minPriceNull = (minPrice == "" || minPrice == null);
+      var maxPriceNull = (maxPrice == "" || maxPrice == null); 
+      var priceBool = true;
+
+      var minPriceParsed = parseInt(minPrice);
+      var maxPriceParsed = parseInt(maxPrice);
+
+      if (minPriceNull && maxPriceNull){
+        // Do nothing
+      } else if (minPriceNull && !maxPriceNull){
+        priceBool = cardPrice <= maxPriceParsed;
+      } else if (!minPriceNull && maxPriceNull){
+        priceBool = cardPrice >= minPriceParsed;
+      } else {
+        priceBool = cardPrice >= minPriceParsed && cardPrice <= maxPriceParsed;
+      }
+
+      // 5. Instantiate by Cases
+      var roomMatch = (bathroomNull || bathBool) && (bedroomNull || bedBool);
+      var furniMatch = furnitureNull || furniBool;
+      var priceMatch = priceBool;
+      var cardTypeMatch = cardTypeBool || cardTypeNull;
+
+      // 6. Check if all conditions are met
+      if (roomMatch && furniMatch && cardTypeMatch && priceMatch){
+        nextFilterInfo.push(currentCard);
+      }
     }
 
     setFilterInfo(nextFilterInfo);
@@ -87,7 +124,16 @@ const Homepage = () => {
   };
 
   const resetData = () => {
+    // Reset the data
     setFilterInfo(info);
+
+    // Reset the filters
+    setBathroomFilter("");
+    setBedroomFilter("");
+    setFurnitureType("");
+    setCardType("");
+    setMinPrice("");
+    setMaxPrice("");
   }
 
 
@@ -97,18 +143,41 @@ const Homepage = () => {
     Fetchdata();
   }
 
-  // Change values of the states
+  // ###################### Change values of the states #######################
   const handleNumBathroomsChange = (e) => {
     setBathroomFilter(e.target.value);
+    setCardType("property");
   }
 
   const handleNumBedroomsChange = (e) => {
     setBedroomFilter(e.target.value);
+    setCardType("property");
   }
 
-  const handleFurnitureType = (e) => {
-    setFurnitureType(e.target.value);
+  const handleFurnitureTypeChange = (e) => {
+    setFurnitureType(e.target.innerText);
+    setCardType("furniture");
   }
+
+  const handleCardTypeChange = (e) => {
+    if (cardType != ""){
+      setCardType(e.target.innerText);
+    }
+  }
+
+  const handleMinPriceChange = (e) => {
+    setMinPrice(e.target.value);
+  }
+
+  const handleMaxPriceChange = (e) => {
+    setMaxPrice(e.target.value);
+  }
+
+  // Run the filter function whenever the furniture type changes
+  useEffect(() => {
+    FilterData();
+  }, [furnitureType]);
+
 
 
   return (
@@ -150,7 +219,7 @@ const Homepage = () => {
           <div className="buttons">
             <button onClick={resetData}>All</button>
             <div className="dropdown">
-              <button onClick={FilterData}>
+              <button>
                 Property
               </button>
               <div className="dropdown-input">
@@ -184,33 +253,49 @@ const Homepage = () => {
             <div className="dropdown">
               <button
                 className="dropbtn"
-                onClick={FilterData.bind(this, "Furniture")}
+                onClick={handleCardTypeChange}
               >
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button onClick={handleFurnitureType}>
+                <button onClick={handleFurnitureTypeChange}>
                   Living Room
                 </button>
-                <button onClick={handleFurnitureType}>
+                <button onClick={handleFurnitureTypeChange}>
                   Dining
                 </button>
               </div>
             </div>
-            {/* <div className="dropdown">
+            <div className="dropdown">
               <button>Price</button>
               <div className="dropdown-input">
                 <div className="container">
                   <b>Minimum</b>&nbsp;
-                  <input type="text" id="min" name="min" autocomplete="off" className="inputBox"/>
+                  <input 
+                    type="number"
+                    value={minPrice}
+                    id="min" 
+                    name="min" 
+                    autoComplete="off" 
+                    className="inputBox"
+                    onChange={handleMinPriceChange}
+                    />
+                    
                   &nbsp;
                   <b>Maximum</b>&nbsp;
-                  <input type="text" id="max" name="max" autocomplete="off" className="inputBox"/>
+                  <input 
+                    type="number" 
+                    value={maxPrice}
+                    id="max" 
+                    name="max" 
+                    autoComplete="off" 
+                    className="inputBox"
+                    onChange={handleMaxPriceChange}/>
                   &nbsp;
-                  <button onClick={getPrice}>Find</button>
+                  <button onClick={FilterData}>Find</button>
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
 
