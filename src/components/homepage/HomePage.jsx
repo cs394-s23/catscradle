@@ -19,6 +19,7 @@ const Homepage = () => {
   const [cardType, setCardType] = useState(""); // property or furniture
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [collectionName, setCollectionName] = useState("ccTesting");
 
   // logout
   const handleLogOut = (event) => {
@@ -34,7 +35,7 @@ const Homepage = () => {
 
     try {
       var querySnapshot = null;
-      querySnapshot = await db.collection("Properties").get();
+      querySnapshot = await db.collection(collectionName).get();
 
       // Loop through the data and store it in ARRAY to display
       querySnapshot.forEach((element) => {

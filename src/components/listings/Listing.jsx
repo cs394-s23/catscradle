@@ -12,7 +12,7 @@ const Listing = () => {
             <div className="Listing_top">
                 <header className="Listing_header">
                 <div className="Listing_header_content">
-                    <h1> {document.itemTitle} </h1>
+                    <h1> {document.title} </h1>
                     <a href="/" className="Return_home_button">
                         <h4> 🏠 Return to Home </h4>
                     </a>
