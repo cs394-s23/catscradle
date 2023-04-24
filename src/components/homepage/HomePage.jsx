@@ -5,6 +5,7 @@ import logo from "../../images/paw.jpeg";
 import db from "../../..//firebase.js";
 import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Homepage = () => {
   // Consts and functions for the homePage
@@ -30,7 +31,6 @@ const Homepage = () => {
   // Fetch the required data using the get() method
   // Made this into an asynchronous function in order to allow the data to be fetched before it is used
   const Fetchdata = async () => {
-
     setDataFetched(true);
 
     try {
@@ -47,61 +47,59 @@ const Homepage = () => {
     } catch (error) {
       console.log(error);
     }
-
   };
 
   // Filtering data
   const FilterData = () => {
-
     var nextFilterInfo = [];
 
-    for (var i = 0; i < info.length; i++){
-
+    for (var i = 0; i < info.length; i++) {
       var currentCard = info[i];
 
       // Filter in all different directions
       // 1. Filter room counts (bedroom and bathroom)
-      var bathroomNull = bathroomFilter == "" || bathroomFilter == null
-      var bedroomNull = bedroomFilter == "" || bedroomFilter == null
+      var bathroomNull = bathroomFilter == "" || bathroomFilter == null;
+      var bedroomNull = bedroomFilter == "" || bedroomFilter == null;
       var bathBool = true;
       var bedBool = true;
 
-      if (typeof(currentCard.numBathrooms) != "undefined"){
+      if (typeof currentCard.numBathrooms != "undefined") {
         var bathBool = currentCard.numBathrooms == bathroomFilter;
       }
 
-      if (typeof(!currentCard.numBedrooms) != "undefined"){
+      if (typeof !currentCard.numBedrooms != "undefined") {
         var bedBool = currentCard.numBedrooms == bedroomFilter;
       }
 
       // 2. Filter by furnite type
-      var furnitureNull = furnitureType == "" || furnitureType == null
+      var furnitureNull = furnitureType == "" || furnitureType == null;
       var furniBool = true;
 
-      if (typeof(currentCard.type) != "undefined"){
-        var furniBool = currentCard.type.toLowerCase() == furnitureType.toLowerCase();
+      if (typeof currentCard.type != "undefined") {
+        var furniBool =
+          currentCard.type.toLowerCase() == furnitureType.toLowerCase();
       }
 
       // 3. Filter by Card Type (furniture or property)
       // Will never by null since it is required field
       var cardTypeNull = cardType == "" || cardType == null;
-      var cardTypeBool = currentCard.itemType.toLowerCase() == cardType.toLowerCase();
-
+      var cardTypeBool =
+        currentCard.itemType.toLowerCase() == cardType.toLowerCase();
 
       // 4. Filter by price
       var cardPrice = parseInt(currentCard.price);
-      var minPriceNull = (minPrice == "" || minPrice == null);
-      var maxPriceNull = (maxPrice == "" || maxPrice == null); 
+      var minPriceNull = minPrice == "" || minPrice == null;
+      var maxPriceNull = maxPrice == "" || maxPrice == null;
       var priceBool = true;
 
       var minPriceParsed = parseInt(minPrice);
       var maxPriceParsed = parseInt(maxPrice);
 
-      if (minPriceNull && maxPriceNull){
+      if (minPriceNull && maxPriceNull) {
         // Do nothing
-      } else if (minPriceNull && !maxPriceNull){
+      } else if (minPriceNull && !maxPriceNull) {
         priceBool = cardPrice <= maxPriceParsed;
-      } else if (!minPriceNull && maxPriceNull){
+      } else if (!minPriceNull && maxPriceNull) {
         priceBool = cardPrice >= minPriceParsed;
       } else {
         priceBool = cardPrice >= minPriceParsed && cardPrice <= maxPriceParsed;
@@ -114,13 +112,12 @@ const Homepage = () => {
       var cardTypeMatch = cardTypeBool || cardTypeNull;
 
       // 6. Check if all conditions are met
-      if (roomMatch && furniMatch && cardTypeMatch && priceMatch){
+      if (roomMatch && furniMatch && cardTypeMatch && priceMatch) {
         nextFilterInfo.push(currentCard);
       }
     }
 
     setFilterInfo(nextFilterInfo);
-
   };
 
   const resetData = () => {
@@ -134,12 +131,11 @@ const Homepage = () => {
     setCardType("");
     setMinPrice("");
     setMaxPrice("");
-  }
-
+  };
 
   // Always run this on page startup
   // Start the fetch operation as soon as the page loads
-  if (!dataFetched){
+  if (!dataFetched) {
     Fetchdata();
   }
 
@@ -147,38 +143,36 @@ const Homepage = () => {
   const handleNumBathroomsChange = (e) => {
     setBathroomFilter(e.target.value);
     setCardType("property");
-  }
+  };
 
   const handleNumBedroomsChange = (e) => {
     setBedroomFilter(e.target.value);
     setCardType("property");
-  }
+  };
 
   const handleFurnitureTypeChange = (e) => {
     setFurnitureType(e.target.innerText);
     setCardType("furniture");
-  }
+  };
 
   const handleCardTypeChange = (e) => {
-    if (cardType != ""){
+    if (cardType != "") {
       setCardType(e.target.innerText);
     }
-  }
+  };
 
   const handleMinPriceChange = (e) => {
     setMinPrice(e.target.value);
-  }
+  };
 
   const handleMaxPriceChange = (e) => {
     setMaxPrice(e.target.value);
-  }
+  };
 
   // Run the filter function whenever the furniture type changes
   useEffect(() => {
     FilterData();
   }, [furnitureType]);
-
-
 
   return (
     <div className="root">
@@ -210,18 +204,14 @@ const Homepage = () => {
         </div>
 
         {/* search bar */}
-        <div className="search-bar">
-          <input id="hpsearch" type="text" placeholder="Search" />
-        </div>
+        <SearchBar filterInfo={filterInfo} setFilterInfo={setFilterInfo} />
 
         {/* buttons */}
         <div className="buttons-list">
           <div className="buttons">
             <button onClick={resetData}>All</button>
             <div className="dropdown">
-              <button>
-                Property
-              </button>
+              <button>Property</button>
               <div className="dropdown-input">
                 <div className="container">
                   <input
@@ -251,19 +241,12 @@ const Homepage = () => {
               </div>
             </div>
             <div className="dropdown">
-              <button
-                className="dropbtn"
-                onClick={handleCardTypeChange}
-              >
+              <button className="dropbtn" onClick={handleCardTypeChange}>
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button onClick={handleFurnitureTypeChange}>
-                  Living Room
-                </button>
-                <button onClick={handleFurnitureTypeChange}>
-                  Dining
-                </button>
+                <button onClick={handleFurnitureTypeChange}>Living Room</button>
+                <button onClick={handleFurnitureTypeChange}>Dining</button>
               </div>
             </div>
             <div className="dropdown">
@@ -271,26 +254,26 @@ const Homepage = () => {
               <div className="dropdown-input">
                 <div className="container">
                   <b>Minimum</b>&nbsp;
-                  <input 
+                  <input
                     type="number"
                     value={minPrice}
-                    id="min" 
-                    name="min" 
-                    autoComplete="off" 
+                    id="min"
+                    name="min"
+                    autoComplete="off"
                     className="inputBox"
                     onChange={handleMinPriceChange}
-                    />
-                    
+                  />
                   &nbsp;
                   <b>Maximum</b>&nbsp;
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     value={maxPrice}
-                    id="max" 
-                    name="max" 
-                    autoComplete="off" 
+                    id="max"
+                    name="max"
+                    autoComplete="off"
                     className="inputBox"
-                    onChange={handleMaxPriceChange}/>
+                    onChange={handleMaxPriceChange}
+                  />
                   &nbsp;
                   <button onClick={FilterData}>Find</button>
                 </div>
