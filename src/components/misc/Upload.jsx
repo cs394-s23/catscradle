@@ -145,25 +145,31 @@ const Upload = () => {
     // Create custom data type
     if (await propertyType == "furniture") {
       dataPush = {
-        itemTitle: title,
-        itemType: propertyType,
-        price: price,
+        title: title,
+        cardType: propertyType,
+        monthlyPrice: price,
         images: img_urls,
         seller: {
           name: sellerName,
           email: sellerEmail,
           phone: phone,
         },
+        description: description,
+        address: address,
+        availableFrom: avilableFrom,
+        availableTo: availableTo,
       };
     } else {
       dataPush = {
-        itemTitle: title,
-        itemType: propertyType,
+        title: title,
+        cardType: propertyType,
         numBathrooms: numBathrooms,
         numBedrooms: numBedrooms,
         description: description,
-        price: price,
+        monthlyPrice: price,
         address: address,
+        availableFrom: avilableFrom,
+        availableTo: availableTo,
         images: img_urls,
         seller: {
           name: sellerName,
