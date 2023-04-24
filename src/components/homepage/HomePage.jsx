@@ -5,7 +5,6 @@ import logo from "../../images/paw.jpeg";
 import db from "../../..//firebase.js";
 import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
 
 const Homepage = () => {
   // Consts and functions for the homePage
@@ -21,6 +20,9 @@ const Homepage = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [collectionName, setCollectionName] = useState("ccTesting");
+
+  // Search bar related stuff
+  const [search, setSearch] = useState("");
 
   // logout
   const handleLogOut = (event) => {
@@ -76,19 +78,17 @@ const Homepage = () => {
       var furnitureNull = furnitureType == "" || furnitureType == null;
       var furniBool = true;
 
-      if (typeof currentCard.type != "undefined") {
-        var furniBool =
-          currentCard.type.toLowerCase() == furnitureType.toLowerCase();
+      if (typeof currentCard.cardCategory != "undefined") {
+        var furniBool = currentCard.cardCategory.toLowerCase() == furnitureType.toLowerCase();
       }
 
       // 3. Filter by Card Type (furniture or property)
       // Will never by null since it is required field
       var cardTypeNull = cardType == "" || cardType == null;
-      var cardTypeBool =
-        currentCard.itemType.toLowerCase() == cardType.toLowerCase();
+      var cardTypeBool = currentCard.cardType.toLowerCase() == cardType.toLowerCase();
 
       // 4. Filter by price
-      var cardPrice = parseInt(currentCard.price);
+      var cardPrice = parseInt(currentCard.monthlyPrice);
       var minPriceNull = minPrice == "" || minPrice == null;
       var maxPriceNull = maxPrice == "" || maxPrice == null;
       var priceBool = true;
@@ -121,7 +121,39 @@ const Homepage = () => {
     setFilterInfo(nextFilterInfo);
   };
 
-  const resetData = () => {
+  // Search the data
+  const searchData = () => {
+
+    console.log("Searching...");
+
+    // Always reset filtering information before searching
+    resetData(false);
+
+    var nextFilterInfo = [];
+
+    for (var i = 0; i < info.length; i++) {
+      var currentCard = info[i];
+
+      // Filter the items in search
+      var searchNull = search == "" || search == null;
+      var searchBool = true;
+
+      // Stringify the current card from json -> string
+      var currentCardString = JSON.stringify(currentCard);
+
+      // See search tolerance
+      searchBool = currentCardString.toLowerCase().includes(search.toLowerCase());
+
+      if (searchNull || searchBool) {
+        nextFilterInfo.push(currentCard);
+      }
+    }
+
+    setFilterInfo(nextFilterInfo);
+
+  };
+
+  const resetData = (resetSearchBool) => {
     // Reset the data
     setFilterInfo(info);
 
@@ -132,6 +164,10 @@ const Homepage = () => {
     setCardType("");
     setMinPrice("");
     setMaxPrice("");
+
+    if (resetSearchBool) {
+      setSearch("");
+    }
   };
 
   // Always run this on page startup
@@ -170,10 +206,19 @@ const Homepage = () => {
     setMaxPrice(e.target.value);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   // Run the filter function whenever the furniture type changes
   useEffect(() => {
     FilterData();
   }, [furnitureType]);
+
+  // Run the filter function whenever the search input changes
+  useEffect(() => {
+    searchData();
+  }, [search]);
 
   return (
     <div className="root">
@@ -189,7 +234,7 @@ const Homepage = () => {
 
         <div className="logo-buttons">
           <div style={{ marginRight: "5px", paddingTop: "10px" }}>
-            <Link to="/upload" class="upload-button">
+            <Link to="/upload" className="upload-button">
               Upload
             </Link>
           </div>
@@ -199,19 +244,26 @@ const Homepage = () => {
           </div>
 
           <div style={{ marginLeft: "5px", paddingTop: "10px" }}>
-            <Link class="upload-button" to="/login" onClick={handleLogOut}>
+            <Link className="upload-button" to="/login" onClick={handleLogOut}>
               Sign Out
             </Link>
           </div>
         </div>
 
         {/* search bar */}
-        <SearchBar filterInfo={filterInfo} setFilterInfo={setFilterInfo} />
+        <div className="search-bar">
+          <input 
+            id="hpsearch"
+            value={search}  
+            onChange={handleSearchChange}
+            type="text"
+            placeholder="Search" />
+        </div>
 
         {/* buttons */}
         <div className="buttons-list">
           <div className="buttons">
-            <button onClick={resetData}>All</button>
+            <button onClick={resetData.bind(this, true)}>All</button>
             <div className="dropdown">
               <button>Property</button>
               <div className="dropdown-input">
@@ -247,7 +299,7 @@ const Homepage = () => {
                 Furniture
               </button>
               <div className="dropdown-content">
-                <button onClick={handleFurnitureTypeChange}>Living Room</button>
+                <button onClick={handleFurnitureTypeChange}>Living</button>
                 <button onClick={handleFurnitureTypeChange}>Dining</button>
               </div>
             </div>
