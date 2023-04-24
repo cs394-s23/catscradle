@@ -387,25 +387,7 @@ const Upload = () => {
                 required
               />
             </div>
-            <div className="upload-form-control">
-              <label> Available From: </label>
-              <input
-                value={avilableFrom}
-                type="date"
-                onChange={handleStartDateChange}
-                ref={dateInputRef}
-              />
-            </div>
 
-            <div className="upload-form-control">
-              <label> Available to: </label>
-              <input
-                value={availableTo}
-                type="date"
-                onChange={handleEndDateChange}
-                ref={dateInputRef}
-              />
-            </div>
             <div className="upload-form-control">
               <label> Description: </label>
               <textarea
