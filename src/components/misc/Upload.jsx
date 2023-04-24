@@ -173,8 +173,6 @@ const Upload = () => {
         },
         description: description,
         address: address,
-        availableFrom: avilableFrom,
-        availableTo: availableTo,
       };
     } else {
       dataPush = {
