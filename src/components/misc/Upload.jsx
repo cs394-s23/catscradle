@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useState, useReducer } from "react";
+import { useState, useReducer, useRef } from "react";
 import db from "../../../firebase.js";
 import { storage } from "../../../firebase.js";
 import { Link } from "react-router-dom";
@@ -23,6 +23,10 @@ const Upload = () => {
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
   const [submitButton, setSubmitButton] = useState("Submit");
+
+  const [avilableFrom, setavilableFrom] = useState("");
+  const [availableTo, setavailableTo] = useState("");
+  const dateInputRef = useRef(null);
 
   var img_urls = [];
 
@@ -63,6 +67,14 @@ const Upload = () => {
     setPrice(e.target.value);
   };
 
+  const handleStartDateChange = (e) => {
+    setavilableFrom(e.target.value);
+  };
+
+  const handleEndDateChange = (e) => {
+    setavailableTo(e.target.value);
+  };
+
   // form validation:
   // 1. Check photo is PNG or JPEG
   // 2. Apporpriate units per different input type
@@ -71,45 +83,50 @@ const Upload = () => {
   const validateForm = () => {
     let isValid = true;
     let tempErrorMessages = [];
-  
+
     // Validate images
     images.forEach((image, index) => {
       if (!image.type.match(/^image\/(png|jpe?g)$/)) {
         isValid = false;
-        tempErrorMessages.push(`Invalid file format for ${images[index].name}. Only PNG and JPEG files are allowed.`);
+        tempErrorMessages.push(
+          `Invalid file format for ${images[index].name}. Only PNG and JPEG files are allowed.`
+        );
       }
     });
-  
+
     // Validate other fields based on property type
     if (propertyType === "property") {
       if (!Number.isInteger(Number(numBedrooms)) || Number(numBedrooms) < 0) {
         isValid = false;
-        tempErrorMessages.push("Number of bedrooms must be a non-negative integer.");
+        tempErrorMessages.push(
+          "Number of bedrooms must be a non-negative integer."
+        );
       }
       if (!Number.isInteger(Number(numBathrooms)) || Number(numBathrooms) < 0) {
         isValid = false;
-        tempErrorMessages.push("Number of bathrooms must be a non-negative integer.");
+        tempErrorMessages.push(
+          "Number of bathrooms must be a non-negative integer."
+        );
       }
     }
-  
+
     // Validate price for both property types
     if (Number(price) <= 0) {
       isValid = false;
       tempErrorMessages.push("Price must be a positive number.");
     }
-  
+
     // Validate phone number for both property types
     const phoneNumberPattern = /^\d{10}$/;
     if (!phone.match(phoneNumberPattern)) {
       isValid = false;
       tempErrorMessages.push("Phone number must be a valid 10-digit number.");
     }
-  
+
     setErrorMessages(tempErrorMessages);
+    setError(isValid);
     return isValid;
   };
-  
-  
 
   // Handle Form Submission
   async function handleSubmit(e) {
@@ -118,14 +135,14 @@ const Upload = () => {
       setError(true);
       return;
     }
-  
+
     setError(false);
-  
-    var dataPush = {}
-  
+
+    var dataPush = {};
+
     var sellerEmail = localStorage.getItem("email");
     var sellerName = localStorage.getItem("name");
-  
+
     // Upload images first to Firebase Storage
     const uploadPromises = images.map(async (image) => {
       const imageRef = ref(storage, "images/" + image.name);
@@ -133,17 +150,17 @@ const Upload = () => {
       const url = await getDownloadURL(imageRef);
       img_urls.push(url);
     });
-  
+
     await Promise.all(uploadPromises);
 
     if (images.length > 0) {
-      console.log("Images Successfully Uploaded to Firebase Storage")
+      console.log("Images Successfully Uploaded to Firebase Storage");
     } else {
-      console.log("No images submitted by user...")
+      console.log("No images submitted by user...");
     }
 
     // Create custom data type
-    if (await propertyType == "furniture") {
+    if ((await propertyType) == "furniture") {
       dataPush = {
         title: title,
         cardType: propertyType,
@@ -177,10 +194,10 @@ const Upload = () => {
           phone: phone,
         },
       };
-    };
+    }
 
-    await console.log("Pushing data to firebase...")
-    await console.log(dataPush)
+    await console.log("Pushing data to firebase...");
+    await console.log(dataPush);
 
     // Insert data into Firebase Firestore Document Stage
     await setSubmitButton("Uploading...");
@@ -194,9 +211,8 @@ const Upload = () => {
     // wait 1 second
     await setTimeout(() => {
       console.log("Delayed for 1 seconds");
-      window.location.href = "/"
+      window.location.href = "/";
     }, "1000");
-
   }
 
   return (
@@ -216,13 +232,13 @@ const Upload = () => {
       </Link>
 
       <form onSubmit={handleSubmit} id="uploadForm">
-      {error
-  ? errorMessages.map((x, idx) => (
-      <p key={idx} style={{ color: "red" }}>
-        {x}
-      </p>
-    ))
-  : ""}
+        {error
+          ? errorMessages.map((x, idx) => (
+              <p key={idx} style={{ color: "red" }}>
+                {x}
+              </p>
+            ))
+          : ""}
 
         <div className="upload-form-control">
           <label> Property Type:</label>
@@ -303,6 +319,26 @@ const Upload = () => {
             </div>
 
             <div className="upload-form-control">
+              <label> Available From: </label>
+              <input
+                value={avilableFrom}
+                type="date"
+                onChange={handleStartDateChange}
+                ref={dateInputRef}
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label> Available to: </label>
+              <input
+                value={availableTo}
+                type="date"
+                onChange={handleEndDateChange}
+                ref={dateInputRef}
+              />
+            </div>
+
+            <div className="upload-form-control">
               <label>Description: </label>
               <textarea
                 value={description}
@@ -343,20 +379,38 @@ const Upload = () => {
               />
             </div>
             <div className="upload-form-control">
-              <label> Description: </label>
-              <textarea
-                value={description}
-                onChange={handleDescriptionChange}
-                required
-              />
-            </div>
-
-            <div className="upload-form-control">
               <label>Phone Number:</label>
               <input
                 type="number"
                 value={phone}
                 onChange={handlePhoneNumber}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label> Available From: </label>
+              <input
+                value={avilableFrom}
+                type="date"
+                onChange={handleStartDateChange}
+                ref={dateInputRef}
+              />
+            </div>
+
+            <div className="upload-form-control">
+              <label> Available to: </label>
+              <input
+                value={availableTo}
+                type="date"
+                onChange={handleEndDateChange}
+                ref={dateInputRef}
+              />
+            </div>
+            <div className="upload-form-control">
+              <label> Description: </label>
+              <textarea
+                value={description}
+                onChange={handleDescriptionChange}
                 required
               />
             </div>
