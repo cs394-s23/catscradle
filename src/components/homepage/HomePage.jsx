@@ -86,6 +86,9 @@ const Homepage = () => {
       // Will never by null since it is required field
       var cardTypeNull = cardType == "" || cardType == null;
       var cardTypeBool = currentCard.cardType.toLowerCase() == cardType.toLowerCase();
+      
+      console.log("Card Type: " + currentCard.cardType)
+      console.log("Card Type: " + cardType.toLowerCase())
 
       // 4. Filter by price
       var cardPrice = parseInt(currentCard.monthlyPrice);
@@ -111,6 +114,8 @@ const Homepage = () => {
       var furniMatch = furnitureNull || furniBool;
       var priceMatch = priceBool;
       var cardTypeMatch = cardTypeBool || cardTypeNull;
+
+      console.log("Room Match: " + roomMatch);
 
       // 6. Check if all conditions are met
       if (roomMatch && furniMatch && cardTypeMatch && priceMatch) {
@@ -193,8 +198,14 @@ const Homepage = () => {
   };
 
   const handleCardTypeChange = (e) => {
-    if (cardType != "") {
-      setCardType(e.target.innerText);
+    setCardType(e.target.innerText);
+
+    // Reset some of the filters
+    if (e.target.innerText.toLowerCase() == "property") {
+      setBathroomFilter("");
+      setBedroomFilter("");
+    } else if (e.target.innerText.toLowerCase() == "furniture") {
+      setFurnitureType("");
     }
   };
 
@@ -219,6 +230,26 @@ const Homepage = () => {
   useEffect(() => {
     searchData();
   }, [search]);
+
+  // Run the filter function whenever the card type changes
+  useEffect(() => {
+    FilterData();
+  }, [cardType]);
+
+  // Run the filter function whenever the bathroom filter changes
+  useEffect(() => {
+    FilterData();
+  }, [bathroomFilter]);
+
+  // Run the filter function whenever the bedroom filter changes
+  useEffect(() => {
+    FilterData();
+  }, [bedroomFilter]);
+
+  // Run the filter function whenever the min price changes
+  useEffect(() => {
+    FilterData();
+  }, [minPrice]);
 
   return (
     <div className="root">
@@ -265,7 +296,7 @@ const Homepage = () => {
           <div className="buttons">
             <button onClick={resetData.bind(this, true)}>All</button>
             <div className="dropdown">
-              <button>Property</button>
+              <button onClick={handleCardTypeChange}>Property</button>
               <div className="dropdown-input">
                 <div className="container">
                   <input
@@ -290,7 +321,6 @@ const Homepage = () => {
                   />
                   &nbsp;
                   <b className="room">Bathroom</b>&nbsp;
-                  <button onClick={FilterData}>Find</button>
                 </div>
               </div>
             </div>
@@ -329,7 +359,6 @@ const Homepage = () => {
                     onChange={handleMaxPriceChange}
                   />
                   &nbsp;
-                  <button onClick={FilterData}>Find</button>
                 </div>
               </div>
             </div>
