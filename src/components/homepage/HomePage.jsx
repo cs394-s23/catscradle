@@ -20,6 +20,7 @@ const Homepage = () => {
   const [cardType, setCardType] = useState(""); // property or furniture
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [collectionName, setCollectionName] = useState("ccTesting");
 
   // logout
   const handleLogOut = (event) => {
@@ -35,7 +36,7 @@ const Homepage = () => {
 
     try {
       var querySnapshot = null;
-      querySnapshot = await db.collection("Properties").get();
+      querySnapshot = await db.collection(collectionName).get();
 
       // Loop through the data and store it in ARRAY to display
       querySnapshot.forEach((element) => {
@@ -178,27 +179,28 @@ const Homepage = () => {
     <div className="root">
       <div className="homePage">
         <div className="hplogo">
-          <p>
-            <span style={{ fontSize: "40px" }}>CatsCradle</span>
+          <div style={{ margin: "auto", width: "100%", textAlign: "center" }}>
+            <span style={{ fontSize: "40px", color: "white" }}>CatsCradle</span>
             <span style={{ marginLeft: "5px" }}>
               <img src={logo} />
             </span>
-          </p>
+          </div>
+        </div>
 
-          <Link className="To_upload_button" to="/upload">
-            <h4> ⬆️ Upload </h4>
-          </Link>
+        <div className="logo-buttons">
+          <div style={{ marginRight: "5px", paddingTop: "10px" }}>
+            <Link to="/upload" class="upload-button">
+              Upload
+            </Link>
+          </div>
 
-          <div className="profile-stuff">
-            <span className="profile-pic">
-              <img
-                src={localStorage.getItem("photo")}
-                className="profile-img"
-              />
-            </span>
+          <div>
+            <img src={localStorage.getItem("photo")} />
+          </div>
 
-            <Link to="/login" onClick={handleLogOut} className="sign-out">
-              Sign out
+          <div style={{ marginLeft: "5px", paddingTop: "10px" }}>
+            <Link class="upload-button" to="/login" onClick={handleLogOut}>
+              Sign Out
             </Link>
           </div>
         </div>

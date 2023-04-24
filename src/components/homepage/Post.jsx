@@ -6,10 +6,10 @@ const Post = (props) => {
   const document = props.document;
 
   // post title
-  const PostTitle = document.itemTitle;
+  const PostTitle = document.title;
 
   // first caption
-  const firstCaption = document.address ? document.address : document.title;
+  const firstCaption = document.address ? document.address : document.cardCategory;
 
   // second caption
   let bdrms = document.numBedrooms;
@@ -20,7 +20,11 @@ const Post = (props) => {
   if (bdrms && bthrms) {
     secondCaption = String(bdrms) + " bedroom " + String(bthrms) + " bath";
   } else {
-    secondCaption = document.itemType;
+    var cardTypeGotten = document.cardCategory;
+    var firstLetter = cardTypeGotten.charAt(0);
+    firstLetter = firstLetter.toUpperCase(); // capitalize the first character
+    var restOfWord = cardTypeGotten.slice(1);
+    secondCaption = firstLetter + restOfWord;
   }
 
   // first image

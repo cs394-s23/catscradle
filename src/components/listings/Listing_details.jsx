@@ -3,14 +3,22 @@ import "./Listing_details.css";
 
 const Listing_details = (props) => {
   const document = props.document;
-  if (document.itemType === "Property") {
+
+  var dateFrom = new Date(document.availableFrom);
+  var dateTo = new Date(document.availableTo);
+
+  // Format the date as "YYYY-MM-DD"
+  dateFrom = dateFrom.toISOString().substring(0, 10);
+  dateTo = dateTo.toISOString().substring(0, 10);
+
+  if (document.cardType.toLowerCase() == "property") {
     return (
       // if else that checks props document type
       <div className="Listing_details">
         <div className="Message_box">
           <p>
-            Message {document.seller.name}:{" "}
-            <a href="javascript:;">{document.seller.phone}</a>
+            Message {document.seller.sellerName}:{" "}
+            <a href="javascript:;">{document.seller.sellerPhone}</a>
           </p>
         </div>
         <div className="Details_box">
@@ -26,11 +34,11 @@ const Listing_details = (props) => {
               </div>
               <div>
                 <ul>
-                  <b>Rent:</b> ${document.price}/month
+                  <b>Rent:</b> ${document.monthlyPrice}/month
                 </ul>
                 <ul>
-                  <b>Rental Period:</b> {document.availableFrom} -{" "}
-                  {document.availableTo}
+                  <b>Rental Period:</b> {dateFrom} -{" "}
+                  {dateTo}
                 </ul>
               </div>
             </div>
@@ -59,8 +67,8 @@ const Listing_details = (props) => {
       <div className="Listing_details">
         <div className="Message_box">
           <p>
-            Message {document.seller.name}:{" "}
-            <a href="javascript:;">{document.seller.phone}</a>
+            Message {document.seller.sellerName}:{" "}
+            <a href="javascript:;">{document.seller.sellerPhone}</a>
           </p>
         </div>
         <div className="Details_box">
@@ -68,18 +76,19 @@ const Listing_details = (props) => {
             <div className="Basic_info">
               <div>
                 <ul>
-                  <b>Category:</b> {document.category}
-                </ul>
-                <ul>
-                  <b>Condition:</b> {document.condition}
+                  <b>Category:</b> {document.cardCategory}
                 </ul>
               </div>
               <div>
                 <ul>
-                  <b>Price:</b> {document.price}
+                  <b>Monthly Price:</b> {document.monthlyPrice}
                 </ul>
                 <ul>
                   <b>Location:</b> {document.address}
+                </ul>
+                <ul>
+                  <b>Rental Period:</b> {dateFrom} -{" "}
+                  {dateTo}
                 </ul>
               </div>
             </div>

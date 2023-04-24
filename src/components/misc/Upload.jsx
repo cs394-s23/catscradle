@@ -67,34 +67,74 @@ const Upload = () => {
   // 1. Check photo is PNG or JPEG
   // 2. Apporpriate units per different input type
   //
-
+  // form validation
+  const validateForm = () => {
+    let isValid = true;
+    let tempErrorMessages = [];
+  
+    // Validate images
+    images.forEach((image, index) => {
+      if (!image.type.match(/^image\/(png|jpe?g)$/)) {
+        isValid = false;
+        tempErrorMessages.push(`Invalid file format for ${images[index].name}. Only PNG and JPEG files are allowed.`);
+      }
+    });
+  
+    // Validate other fields based on property type
+    if (propertyType === "property") {
+      if (!Number.isInteger(Number(numBedrooms)) || Number(numBedrooms) < 0) {
+        isValid = false;
+        tempErrorMessages.push("Number of bedrooms must be a non-negative integer.");
+      }
+      if (!Number.isInteger(Number(numBathrooms)) || Number(numBathrooms) < 0) {
+        isValid = false;
+        tempErrorMessages.push("Number of bathrooms must be a non-negative integer.");
+      }
+    }
+  
+    // Validate price for both property types
+    if (Number(price) <= 0) {
+      isValid = false;
+      tempErrorMessages.push("Price must be a positive number.");
+    }
+  
+    // Validate phone number for both property types
+    const phoneNumberPattern = /^\d{10}$/;
+    if (!phone.match(phoneNumberPattern)) {
+      isValid = false;
+      tempErrorMessages.push("Phone number must be a valid 10-digit number.");
+    }
+  
+    setErrorMessages(tempErrorMessages);
+    return isValid;
+  };
+  
+  
 
   // Handle Form Submission
   async function handleSubmit(e) {
     e.preventDefault();
-
+    if (!validateForm()) {
+      setError(true);
+      return;
+    }
+  
+    setError(false);
+  
     var dataPush = {}
-
+  
     var sellerEmail = localStorage.getItem("email");
     var sellerName = localStorage.getItem("name");
-
+  
     // Upload images first to Firebase Storage
-    for (let i = 0; i < images.length; i++) {
-      const imageRef = ref(storage, "images/" + images[i].name);
-      uploadBytes(imageRef, images[i])
-        .then(async () => {
-          getDownloadURL(imageRef)
-            .then((url) => {
-              img_urls.push(url);
-            })
-            .catch((error) => {
-              console.log(error.message, ", error getting the image url");
-            });
-        })
-        .catch((error) => {
-          console.log(error.message, "error uploading the image");
-        });
-    }
+    const uploadPromises = images.map(async (image) => {
+      const imageRef = ref(storage, "images/" + image.name);
+      await uploadBytes(imageRef, image);
+      const url = await getDownloadURL(imageRef);
+      img_urls.push(url);
+    });
+  
+    await Promise.all(uploadPromises);
 
     if (images.length > 0) {
       console.log("Images Successfully Uploaded to Firebase Storage")
@@ -105,25 +145,31 @@ const Upload = () => {
     // Create custom data type
     if (await propertyType == "furniture") {
       dataPush = {
-        itemTitle: title,
-        itemType: propertyType,
-        price: price,
+        title: title,
+        cardType: propertyType,
+        monthlyPrice: price,
         images: img_urls,
         seller: {
           name: sellerName,
           email: sellerEmail,
           phone: phone,
         },
+        description: description,
+        address: address,
+        availableFrom: avilableFrom,
+        availableTo: availableTo,
       };
     } else {
       dataPush = {
-        itemTitle: title,
-        itemType: propertyType,
+        title: title,
+        cardType: propertyType,
         numBathrooms: numBathrooms,
         numBedrooms: numBedrooms,
         description: description,
-        price: price,
+        monthlyPrice: price,
         address: address,
+        availableFrom: avilableFrom,
+        availableTo: availableTo,
         images: img_urls,
         seller: {
           name: sellerName,
@@ -170,13 +216,14 @@ const Upload = () => {
       </Link>
 
       <form onSubmit={handleSubmit} id="uploadForm">
-        {error
-          ? message.map((x, idx) => (
-              <p key={idx} style={{ color: "red" }}>
-                {x}
-              </p>
-            ))
-          : ""}
+      {error
+  ? errorMessages.map((x, idx) => (
+      <p key={idx} style={{ color: "red" }}>
+        {x}
+      </p>
+    ))
+  : ""}
+
         <div className="upload-form-control">
           <label> Property Type:</label>
           <select value={propertyType} onChange={handlePropertyTypeChange}>

@@ -3,70 +3,39 @@
 }
 
 /* logo section */
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px;
-  background-color: #4b0082;
-}
-
-.logo p {
-  color: white;
-  font-size: 32px;
-  margin-left: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.logo img {
-  height: 45px;
-  width: 45px;
-  margin-top: 5px;
-  object-fit: cover;
-}
-
-/* Reset margins and paddings */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  line-height: 1.6;
-  background-color: #f5f5f5;
-}
-
-.root {
-  text-align: center;
-}
-
-/* logo section */
 .hplogo {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding-left: 35%;
-  padding-top: 40px;
   background-color: #4b0082;
+  padding-top: 20px;
 }
 
-.hplogo p {
-  color: white;
-  font-size: 32px;
-  margin-left: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.logo-buttons {
+  display: flex;
+  background-color: #4b0082;
+  justify-content: right;
+  padding-right: 160px;
+  margin-top: -50px;
+}
+
+.logo-buttons img {
+  width: 45px;
+  height: 45px;
 }
 
 .hplogo img {
-  height: 45px;
   width: 45px;
-  margin-top: 5px;
-  object-fit: cover;
+  height: 45px;
+}
+
+.upload-button {
+  text-decoration: none;
+  color: white;
+  margin-top: 10px;
+}
+
+.upload-button:hover {
+  text-decoration: underline;
 }
 
 /* search bar */
@@ -219,44 +188,6 @@ input[type="text"] {
   justify-content: center;
 }
 
-.To_upload_button {
-  color: white;
-  text-decoration: none;
-  border-style: solid;
-  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
-  border-width: 2px;
-  border-color: white;
-  border-radius: 5px;
-  margin-left: 50%;
-}
-
-.To_upload_button:hover {
-  color: #711997;
-  background-color: white;
-}
-
-.sign-out {
-  color: white;
-  text-decoration: none;
-  border-style: solid;
-  padding: 0.5vh 0.5vw 0.5vh 0.5vw;
-  border-width: 2px;
-  border-color: white;
-  border-radius: 5px;
-  margin-left: 35px;
-  margin-right: 50px;
-}
-
-.sign-out:hover {
-  color: #711997;
-  background-color: white;
-}
-
-.profile-stuff {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Mobile Responsive Design */
 @media screen and (max-width: 768px) and (max-device-width: 1024px) {
   .search-bar {
@@ -319,10 +250,5 @@ input[type="text"] {
 
   .hplogo p {
     margin-left: -106px;
-  }
-
-  .To_upload_button {
-    margin-left: -47%;
-    margin-top: 10px;
   }
 }
