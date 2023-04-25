@@ -280,8 +280,78 @@ obj12 = {
   "propertySize": 2500
 }
 
+obj13 = {
+  "cardType": "property",
+  "cardCategory": "apartment",
+  "title": "Cozy Apartment Near Plex",
+  "monthlyPrice": 3500,
+  "images": [
+    "https://images.realty.mx/a00d08994dac2ef65c0dacc9ec8e05dc/images/assets/1611_67028.jpg",
+    "https://photos.zillowstatic.com/fp/ac11ba498ebe08af0b625462d511024e-cc_ft_1536.jpg"
+  ],
+  "seller": {
+    "sellerName": "Jane Smith",
+    "sellerEmail": "janesmith@example.com",
+    "sellerPhone": "+1 (123) 456-7890"
+  },
+  "description": "Mid-sized apartment close to campus. Good for students working on campus!",
+  "address": "638 Library Place",
+  "numBathrooms": 2,
+  "numBedrooms": 1,
+  "amenities": [
+    "Central heating",
+    "In-unit laundry"
+  ],
+  "availableFrom": "2023-06-13T00:00:00Z",
+  "availableTo": "2023-08-31T00:00:00Z",
+  "propertySize": 2000
+}
 
-data = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12]
+obj14 = {
+  "cardType": "furniture",
+  "cardCategory": "kitchen",
+  "title": "Wooden Cutting Board",
+  "monthlyPrice": 20,
+  "images": [
+    "https://www.ikea.com/us/en/images/products/proppmaett-cutting-board-beech__0711763_pe728455_s5.jpg",
+    "https://www.ikea.com/us/en/images/products/proppmaett-cutting-board-beech__0896222_pe609819_s5.jpg"
+  ],
+  "seller": {
+    "sellerName": "Emily White",
+    "sellerEmail": "emily.white@example.com",
+    "sellerPhone": "+1 (555) 321-9876"
+  },
+  "description": "Used wooden cutting board.",
+  "address": "828 Clark Street",
+  "availableFrom": "2023-06-13T00:00:00Z",
+  "availableTo": "2023-08-31T00:00:00Z",
+  "propertySize": 2500
+}
+
+obj15 = {
+  "cardType": "furniture",
+  "cardCategory": "living",
+  "title": "IKEA Arkelstorp Desk",
+  "monthlyPrice": 100,
+  "images": [
+    "https://www.ikea.com/us/en/images/products/arkelstorp-desk-black__0735967_pe740301_s5.jpg",
+    "https://www.ikea.com/us/en/images/products/arkelstorp-desk-black__0802362_ph162375_s5.jpg"
+  ],
+  "seller": {
+    "sellerName": "Bob Jones",
+    "sellerEmail": "bobjones@example.com",
+    "sellerPhone": "+1 (345) 678-9102"
+  },
+  "description": "IKEA desk made with two types of wood. Lightly used, minorscratches.",
+  "address": "612 Noyes Street",
+  "availableFrom": "2023-06-13T00:00:00Z",
+  "availableTo": "2023-08-31T00:00:00Z",
+  "propertySize": 2500
+}
+
+
+
+data = [obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10, obj11, obj12, obj13, obj14, obj15]
 
 for record in data:
     db.collection(u'ccTesting').add(record)
