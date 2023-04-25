@@ -331,6 +331,7 @@ const Homepage = () => {
               <div className="dropdown-content">
                 <button onClick={handleFurnitureTypeChange}>Living</button>
                 <button onClick={handleFurnitureTypeChange}>Dining</button>
+                <button onClick={handleFurnitureTypeChange}>Kitchen</button>
               </div>
             </div>
             <div className="dropdown">
