@@ -4,8 +4,11 @@ import { useNavigate } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { auth, provider } from "../../../firebase";
 import { signInWithPopup } from "firebase/auth";
+import { useState } from "react";
 
 const Login = () => {
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
   const navigate = useNavigate();
 
   const signInWithGoogle = () => {
@@ -17,7 +20,9 @@ const Login = () => {
 
         // See if email contains northwestern domain
         if (!userEmail.includes("u.northwestern.edu")) {
-          alert("Please use accounts with 'u.northwestern.edu' domain.");
+          // alert("Please use accounts with 'u.northwestern.edu' domain.");
+          setIsEmailValid(false);
+
           return;
         }
 
@@ -51,9 +56,14 @@ const Login = () => {
           <h2>Login</h2>
           <form>
             <div className="google-sign-in">
-              <GoogleButton 
-                label="Sign in" 
-                onClick={signInWithGoogle}/>
+              <GoogleButton label="Sign in" onClick={signInWithGoogle} />
+              {!isEmailValid ? (
+                <p style={{ color: "red" }}>
+                  Please use accounts with 'u.northwestern.edu' domain"
+                </p>
+              ) : (
+                ""
+              )}
             </div>
           </form>
         </div>
