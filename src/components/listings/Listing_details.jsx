@@ -25,8 +25,8 @@ const Listing_details = (props) => {
       <div className="Listing_details">
         <div className="Message_box">
           <p>
-            Message {document.seller.sellerName}:{" "}
-            <a href="javascript:;">{document.seller.sellerPhone}</a>
+            Message {document.seller.name}:{" "}
+            <a href="javascript:;">{document.seller.phone}</a>
           </p>
         </div>
         <div className="Details_box">
@@ -77,8 +77,8 @@ const Listing_details = (props) => {
       <div className="Listing_details">
         <div className="Message_box">
           <p>
-            Message {document.seller.sellerName}:{" "}
-            <a href="javascript:;">{document.seller.sellerPhone}</a>
+            Message {document.seller.name}:{" "}
+            <a href="javascript:;">{document.seller.phone}</a>
           </p>
         </div>
         <div className="Details_box">
