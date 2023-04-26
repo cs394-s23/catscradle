@@ -157,7 +157,7 @@ const Upload = () => {
 
     var sellerEmail = localStorage.getItem("email");
     var sellerName = localStorage.getItem("name");
-    var sepAmmenities = ammenities.split(", ");
+    var sepAmmenities = amenities.split(", ");
 
     // Upload images first to Firebase Storage
     const uploadPromises = images.map(async (image) => {
