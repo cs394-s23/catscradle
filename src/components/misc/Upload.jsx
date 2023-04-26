@@ -82,7 +82,7 @@ const Upload = () => {
     setCategory(e.target.value);
   };
 
-  const handleAmmnitiesChange = (e) => {
+  const handleAmenitiesChange = (e) => {
     setAmenities(e.target.value);
   };
 
@@ -373,7 +373,7 @@ const Upload = () => {
             </div>
 
             <div className="upload-form-control">
-              <label> Ammenities - Seperate using ",", e.g. (gym, pool) </label>
+              <label> Ammenities - Seperate using ", ", e.g. (gym, pool) </label>
               <input
                 type="text"
                 value={amenities}
