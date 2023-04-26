@@ -37,8 +37,7 @@ const Listing_details = (props) => {
                   <b>Rent:</b> ${document.monthlyPrice}/month
                 </ul>
                 <ul>
-                  <b>Rental Period:</b> {dateFrom} -{" "}
-                  {dateTo}
+                  <b>Rental Period:</b> {dateFrom} - {dateTo}
                 </ul>
               </div>
             </div>
@@ -81,14 +80,10 @@ const Listing_details = (props) => {
               </div>
               <div>
                 <ul>
-                  <b>Monthly Price:</b> {document.monthlyPrice}
+                  <b>Price:</b> {document.monthlyPrice}
                 </ul>
                 <ul>
                   <b>Location:</b> {document.address}
-                </ul>
-                <ul>
-                  <b>Rental Period:</b> {dateFrom} -{" "}
-                  {dateTo}
                 </ul>
               </div>
             </div>
