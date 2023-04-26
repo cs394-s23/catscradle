@@ -93,105 +93,135 @@ obj3 = {
 }
 
 obj4 = {
-  "cardType": "apartment",
-  "cardCategory": "rent",
+  "cardType": "property",
+  "cardCategory": "apartment",
   "title": "The Uptown Residences",
   "monthlyPrice": 2200,
   "images": [
-    "https://unsplash.com/photos/yFV39g6AZ5o",
-    "https://unsplash.com/photos/jWU9FpLW7fI"
+    "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://www.glenwoodnyc.com/wp-content/uploads/2022/05/2-JSP-LOBBY-01-02-1280.jpg",
+    "https://images.unsplash.com/photo-1514237487632-b60bc844a47d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
   ],
   "seller": {
     "sellerName": "Samantha Brown",
     "sellerEmail": "samanthabrown@example.com",
     "sellerPhone": "+1 (555) 123-4567"
   },
-  "description": "This spacious and stylish 2-bedroom, 2-bathroom apartment boasts an open-concept layout with modern finishes, large windows, and a private balcony...",
+  "description": "Experience the perfect blend of space and style in this modern 2-bedroom, 2-bathroom apartment. The open-concept design features contemporary finishes, expansive windows, and a private balcony.",
   "address": "123 Elm St",
+  "numBathrooms": 2,
+  "numBedrooms": 2,
+  "amenities": [
+    "Central air conditioning",
+    "In-unit laundry"
+  ],
   "availableFrom": "2023-06-01T00:00:00Z",
   "availableTo": "2024-05-31T00:00:00Z",
   "propertySize": 1200
 }
 
 obj5 = {
-  "cardType": "apartment",
-  "cardCategory": "rent",
+  "cardType": "property",
+  "cardCategory": "apartment",
   "title": "Elmwood Terrace Apartments",
   "monthlyPrice": 1400,
   "images": [
-    "https://unsplash.com/photos/M0k4llbRpHU",
-    "https://unsplash.com/photos/mCvYFXGA0Hk"
+    "https://nl.edu/media/nledu/content-assets/images/undergraduate-college/uvm-partnership/UCC_Suite_1-(1).png",
+    "https://plus.unsplash.com/premium_photo-1661963447435-ea565b4d245f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2587&q=80"
   ],
   "seller": {
     "sellerName": "John Smith",
     "sellerEmail": "johnsmith@example.com",
     "sellerPhone": "+1 (555) 234-5678"
   },
-  "description": "This inviting 1-bedroom, 1-bathroom apartment is nestled in a quiet residential neighborhood and features a working fireplace, hardwood floors, and ample natural light...",
+  "description": "Discover your sanctuary in this cozy 1-bedroom, 1-bathroom apartment, tucked away in a peaceful residential neighborhood. The inviting living room features a warm, crackling fireplace and beautiful hardwood floors.",
   "address": "456 Maple Ave",
+  "numBathrooms": 1,
+  "numBedrooms": 1,
+  "amenities": [
+  "Fireplace",
+  "Pet-friendly community"
+],
   "availableFrom": "2023-07-01T00:00:00Z",
   "availableTo": "2023-12-31T00:00:00Z",
   "propertySize": 800
 }
 
 obj6 = {
-  "cardType": "apartment",
-  "cardCategory": "rent",
+  "cardType": "property",
+  "cardCategory": "apartment",
   "title": "Skyline Tower Apartments",
   "monthlyPrice": 1800,
   "images": [
-    "https://unsplash.com/photos/9pw5-wpoNwo",
-    "https://unsplash.com/photos/Mm6CxMm-MNQ"
+    "https://collegestudentapartments.s3.amazonaws.com/articles_images/e3/1529524725863/image.jpg",
+    "https://plus.unsplash.com/premium_photo-1661928005866-864c961775ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80"
   ],
   "seller": {
     "sellerName": "Lucy Davis",
     "sellerEmail": "lucydavis@example.com",
     "sellerPhone": "+1 (555) 345-6789"
   },
-  "description": "This luxurious studio apartment offers floor-to-ceiling windows, a gourmet kitchen with stainless steel appliances, and stunning city views...",
+  "description": "Indulge in luxury living with this stunning studio apartment, featuring floor-to-ceiling windows that showcase breathtaking city views. The gourmet kitchen is equipped with sleek stainless steel appliances and modern fixtures.",
   "address": "789 Pine St",
+  "numBathrooms": 2,
+  "numBedrooms": 1,
+  "amenities": [
+  "Rooftop terrace",
+  "24-hour fitness center"
+],
   "availableFrom": "2023-08-01T00:00:00Z",
   "availableTo": "2024-07-31T00:00:00Z",
   "propertySize": 600
 }
 
 obj7 = {
-  "cardType": "apartment",
-  "cardCategory": "rent",
+  "cardType": "property",
+  "cardCategory": "apartment",
   "title": "Oak Grove Manor",
   "monthlyPrice": 2500,
   "images": [
-    "https://unsplash.com/photos/J7clI8qJ0xA",
-    "https://unsplash.com/photos/GqbU78bdJFM"
+    "https://images1.apartments.com/i2/P_RvxaByMMDgiO45LChTmlfZcpMTvqOArjcHXo4UpHg/111/college-park-student-apartments-edinboro-pa-primary-photo.jpg",
+    "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2371&q=80"
   ],
   "seller": {
     "sellerName": "Olivia Wilson",
     "sellerEmail": "oliviawilson@example.com",
     "sellerPhone": "+1 (555) 456-7890"
   },
-  "description": "This charming and spacious 3-bedroom, 2-bathroom apartment is located in a family-friendly neighborhood and features original hardwood floors, built-in bookshelves, and a sunroom...",
+  "description": "Step into a world of charm and character in this spacious 3-bedroom, 2-bathroom apartment, situated in a family-friendly neighborhood. The home boasts original hardwood floors, elegant built-in bookshelves, and a delightful sunroom.",
   "address": "321 Birch Ln",
+  "numBathrooms": 3,
+  "numBedrooms": 2,
+  "amenities": [
+  "Sunroom",
+  "Off-street parking"
+],
   "availableFrom": "2023-09-01T00:00:00Z",
   "availableTo": "2024-08-31T00:00:00Z",
   "propertySize": 1500
 }
 
 obj8 = {
-  "cardType": "apartment",
-  "cardCategory": "rent",
+  "cardType": "property",
+  "cardCategory": "apartment",
   "title": "Willow Park Townhomes",
   "monthlyPrice": 2300,
   "images": [
-    "https://unsplash.com/photos/QL7KdXdcfWA",
-    "https://unsplash.com/photos/LYO6Aznnp7c"
+    "https://static.wixstatic.com/media/22508c_e653967fdd364bf0a2fc80d8fedf01fe~mv2.webp",
+    "https://i.pinimg.com/originals/09/dd/f9/09ddf99a6d4d86169ec4e8ac3cf9a798.png"
   ],
   "seller": {
     "sellerName": "Michael Thompson",
     "sellerEmail": "michaelthompson@example.com",
     "sellerPhone": "+1 (555) 567-8901"
   },
-  "description": "This updated 2-story townhouse offers 3 bedrooms and 2.5 bathrooms, a private backyard, and an attached garage...",
+  "description": "Welcome to your dream home with this recently updated 2-story townhouse, featuring 3 bedrooms and 2.5 bathrooms. The private backyard offers an ideal space for outdoor entertaining, and the attached garage provides added convenience.",
   "address": "987 Cedar Dr",
+  "numBathrooms": 3,
+  "numBedrooms": 2,
+  "amenities": [
+  "Private backyard",
+  "Attached garage"
+],
   "availableFrom": "2023-10-01T00:00:00Z",
   "availableTo": "2024-09-30T00:00:00Z",
   "propertySize": 1800
