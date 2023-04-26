@@ -251,6 +251,11 @@ const Homepage = () => {
     FilterData();
   }, [minPrice]);
 
+  // Run the filter function whenever the max price changes
+  useEffect(() => {
+    FilterData();
+  }, [maxPrice]);
+
   return (
     <div className="root">
       <div className="homePage">

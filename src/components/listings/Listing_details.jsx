@@ -80,7 +80,7 @@ const Listing_details = (props) => {
               </div>
               <div>
                 <ul>
-                  <b>Price:</b> {document.monthlyPrice}
+                  <b>Price: $</b> {document.monthlyPrice}
                 </ul>
                 <ul>
                   <b>Location:</b> {document.address}
