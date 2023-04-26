@@ -24,6 +24,7 @@ const Upload = () => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [title, setTitle] = useState("");
   const [phone, setPhone] = useState("");
+  const [amenities, setAmenities] = useState("");
   const [submitButton, setSubmitButton] = useState("Submit");
 
   const [avilableFrom, setavilableFrom] = useState("");
@@ -79,6 +80,10 @@ const Upload = () => {
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
+  };
+
+  const handleAmmnitiesChange = (e) => {
+    setAmenities(e.target.value);
   };
 
   // form validation:
@@ -152,6 +157,7 @@ const Upload = () => {
 
     var sellerEmail = localStorage.getItem("email");
     var sellerName = localStorage.getItem("name");
+    var sepAmmenities = ammenities.split(", ");
 
     // Upload images first to Firebase Storage
     const uploadPromises = images.map(async (image) => {
@@ -183,7 +189,7 @@ const Upload = () => {
           phone: phone,
         },
         description: description,
-        address: address,
+        address: address
       };
     } else {
       dataPush = {
@@ -203,6 +209,7 @@ const Upload = () => {
           email: sellerEmail,
           phone: phone,
         },
+        amenities: sepAmenities,
       };
     }
 
@@ -364,7 +371,17 @@ const Upload = () => {
                 required
               />
             </div>
+
+            <div className="upload-form-control">
+              <label> Ammenities - Seperate using ",", e.g. (gym, pool) </label>
+              <input
+                type="text"
+                value={amenities}
+                onChange={handleAmenitiesChange}
+              />
+            </div>
           </>
+
         ) : propertyType === "furniture" ? (
           <>
             <div className="upload-form-control">

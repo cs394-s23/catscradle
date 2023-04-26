@@ -61,7 +61,7 @@ const Listing_details = (props) => {
           </div>
           <div className="Amenities">
             <p>Amenities</p>
-            {document.amenities.length > 0 ? (
+            {(document.amenities && document.amenities.length) > 0 ? (
               document.amenities.map((amenity) => {
                 return <li>{amenity}</li>;
               })
