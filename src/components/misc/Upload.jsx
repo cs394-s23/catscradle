@@ -2,6 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useState, useReducer, useRef } from "react";
 import db from "../../../firebase.js";
+import { DbTitle } from "../../..//firebase.js";
 import { storage } from "../../../firebase.js";
 import { Link } from "react-router-dom";
 import "./Upload.css";
@@ -12,6 +13,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const Upload = () => {
   // using states now instead of vanilla JS
   const [propertyType, setPropertyType] = useState("");
+  const [category, setCategory] = useState("");
   const [address, setAddress] = useState("");
   const [numBedrooms, setNumBedrooms] = useState("");
   const [numBathrooms, setNumBathrooms] = useState("");
@@ -75,6 +77,10 @@ const Upload = () => {
     setavailableTo(e.target.value);
   };
 
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
   // form validation:
   // 1. Check photo is PNG or JPEG
   // 2. Apporpriate units per different input type
@@ -131,8 +137,12 @@ const Upload = () => {
   // Handle Form Submission
   async function handleSubmit(e) {
     e.preventDefault();
+
     if (!validateForm()) {
       setError(true);
+
+      alert("Please fix the errors in the form before submitting!");
+
       return;
     }
 
@@ -164,6 +174,7 @@ const Upload = () => {
       dataPush = {
         title: title,
         cardType: propertyType,
+        cardCategory : category,
         monthlyPrice: price,
         images: img_urls,
         seller: {
@@ -178,6 +189,7 @@ const Upload = () => {
       dataPush = {
         title: title,
         cardType: propertyType,
+        cardCategory : category,
         numBathrooms: numBathrooms,
         numBedrooms: numBedrooms,
         description: description,
@@ -200,7 +212,7 @@ const Upload = () => {
     // Insert data into Firebase Firestore Document Stage
     await setSubmitButton("Uploading...");
 
-    const docRef = await addDoc(collection(db, "Properties"), dataPush);
+    const docRef = await addDoc(collection(db, DbTitle), dataPush);
     await console.log(docRef);
     await console.log("Document written with ID: ", docRef.id);
 
@@ -239,7 +251,7 @@ const Upload = () => {
           : ""}
 
         <div className="upload-form-control">
-          <label> Property Type:</label>
+          <label> Item Type:</label>
           <select value={propertyType} onChange={handlePropertyTypeChange}>
             <option value=""> Please choose an option </option>
             <option value="property">Property</option>
@@ -267,7 +279,15 @@ const Upload = () => {
                 required
               />
             </div>
-
+            <div className="upload-form-control">
+              <label> Property Type:</label>
+              <select value={category} onChange={handleCategoryChange}>
+                <option value=""> Please choose an option </option>
+                <option value="studio">Studio</option>
+                <option value="apartment">Apartment</option>
+                <option value="single_room">Single Room</option>
+              </select>
+            </div>
             <div className="upload-form-control">
               <label>Number of Bedrooms: </label>
               <input
@@ -356,6 +376,17 @@ const Upload = () => {
                 required
               />
             </div>
+            <div className="upload-form-control">
+              <label> Furniture Type:</label>
+              <select value={category} onChange={handleCategoryChange}>
+                <option value=""> Please choose an option </option>
+                <option value="living">Living</option>
+                <option value="dining">Dining</option>
+                <option value="kitchen">Kitchen</option>
+                <option value="bedroom">Bedroom</option>
+                <option value="bathroom">Bathroom</option>
+              </select>
+            </div>
             <div>
               <div className="upload-form-control">
                 <label>Images of the Furniture Piece: </label>
@@ -391,6 +422,15 @@ const Upload = () => {
               <textarea
                 value={description}
                 onChange={handleDescriptionChange}
+                required
+              />
+            </div>
+            <div className="upload-form-control">
+              <label>Pickup Address: </label>
+              <input
+                type="text"
+                value={address}
+                onChange={handleAddressChange}
                 required
               />
             </div>

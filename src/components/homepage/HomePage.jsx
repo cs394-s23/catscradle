@@ -3,6 +3,7 @@ import Post from "./Post";
 import "./Homepage.css";
 import logo from "../../images/paw.jpeg";
 import db from "../../..//firebase.js";
+import { DbTitle } from "../../..//firebase.js";
 import { useState, useReducer, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -19,7 +20,7 @@ const Homepage = () => {
   const [cardType, setCardType] = useState(""); // property or furniture
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
-  const [collectionName, setCollectionName] = useState("ccTesting");
+  const [collectionName, setCollectionName] = useState(DbTitle);
 
   // Search bar related stuff
   const [search, setSearch] = useState("");
@@ -337,6 +338,8 @@ const Homepage = () => {
                 <button onClick={handleFurnitureTypeChange}>Living</button>
                 <button onClick={handleFurnitureTypeChange}>Dining</button>
                 <button onClick={handleFurnitureTypeChange}>Kitchen</button>
+                <button onClick={handleFurnitureTypeChange}>Bedroom</button>
+                <button onClick={handleFurnitureTypeChange}>Bathroom</button>
               </div>
             </div>
             <div className="dropdown">

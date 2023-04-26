@@ -31,6 +31,9 @@ const Listing_details = (props) => {
                 <ul>
                   <b>Baths:</b> {document.numBathrooms}
                 </ul>
+                <ul>
+                  <b>Address:</b> {document.address}
+                </ul>
               </div>
               <div>
                 <ul>
@@ -77,13 +80,13 @@ const Listing_details = (props) => {
                 <ul>
                   <b>Category:</b> {document.cardCategory}
                 </ul>
+                <ul>
+                  <b>Pickup Location:</b> {document.address}
+                </ul>
               </div>
               <div>
                 <ul>
                   <b>Price: $</b> {document.monthlyPrice}
-                </ul>
-                <ul>
-                  <b>Location:</b> {document.address}
                 </ul>
               </div>
             </div>

@@ -48,6 +48,10 @@ console.log(window.EMULATION)
 //   console.log("Not connecting to emulators...");
 // }
 
+// Exporting DB Title
+const DbTitle = "ccTesting";
+
 export default db;
 export const storage = getStorage(firebaseApp);
 export { auth, provider };
+export { DbTitle} ;
