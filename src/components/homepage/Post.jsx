@@ -16,12 +16,6 @@ const Post = (props) => {
   let bthrms = document.numBathrooms;
   var secondCaption = "";
 
-  // Changed if statement here to reflect they are both not null -> &&
-  console.log(PostTitle);
-  console.log(document);
-  console.log(bdrms, bthrms);
-  console.log(bdrms && bthrms);
-
   if (bdrms && bthrms) {
     secondCaption = String(bdrms) + " bedroom " + String(bthrms) + " bath";
   } else {

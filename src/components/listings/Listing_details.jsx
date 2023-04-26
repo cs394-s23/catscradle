@@ -4,12 +4,20 @@ import "./Listing_details.css";
 const Listing_details = (props) => {
   const document = props.document;
 
-  var dateFrom = new Date(document.availableFrom);
-  var dateTo = new Date(document.availableTo);
+  console.log(document);
+  console.log(document.cardType.toLowerCase() == "property");
 
-  // Format the date as "YYYY-MM-DD"
-  dateFrom = dateFrom.toISOString().substring(0, 10);
-  dateTo = dateTo.toISOString().substring(0, 10);
+  var dateFrom = null;
+  var dateTo = null;
+
+  if (document.cardType.toLowerCase() == "property") {
+    dateFrom = new Date(document.availableFrom);
+    dateTo = new Date(document.availableTo);
+
+    // Format the date as "YYYY-MM-DD"
+    dateFrom = dateFrom.toISOString().substring(0, 10);
+    dateTo = dateTo.toISOString().substring(0, 10);
+  }
 
   if (document.cardType.toLowerCase() == "property") {
     return (

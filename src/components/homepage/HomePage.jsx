@@ -87,9 +87,6 @@ const Homepage = () => {
       // Will never by null since it is required field
       var cardTypeNull = cardType == "" || cardType == null;
       var cardTypeBool = currentCard.cardType.toLowerCase() == cardType.toLowerCase();
-      
-      console.log("Card Type: " + currentCard.cardType)
-      console.log("Card Type: " + cardType.toLowerCase())
 
       // 4. Filter by price
       var cardPrice = parseInt(currentCard.monthlyPrice);
@@ -115,8 +112,6 @@ const Homepage = () => {
       var furniMatch = furnitureNull || furniBool;
       var priceMatch = priceBool;
       var cardTypeMatch = cardTypeBool || cardTypeNull;
-
-      console.log("Room Match: " + roomMatch);
 
       // 6. Check if all conditions are met
       if (roomMatch && furniMatch && cardTypeMatch && priceMatch) {
