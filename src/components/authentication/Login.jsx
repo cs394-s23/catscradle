@@ -15,6 +15,12 @@ const Login = () => {
         var userEmail = data.user.email;
         var imgUrl = data.user.photoURL;
 
+        // See if email contains northwestern domain
+        if (!userEmail.includes("u.northwestern.edu")) {
+          alert("Please use accounts with 'u.northwestern.edu' domain.");
+          return;
+        }
+
         localStorage.setItem("name", userName);
         localStorage.setItem("email", userEmail);
         localStorage.setItem("photo", imgUrl);
@@ -45,7 +51,9 @@ const Login = () => {
           <h2>Login</h2>
           <form>
             <div className="google-sign-in">
-              <GoogleButton label="Sign in" onClick={signInWithGoogle} />
+              <GoogleButton 
+                label="Sign in" 
+                onClick={signInWithGoogle}/>
             </div>
           </form>
         </div>
